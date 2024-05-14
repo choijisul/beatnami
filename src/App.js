@@ -1,33 +1,19 @@
-import React from 'react'
+import React, { useState } from 'react';
+import MainScreen from './components/MainScreen';
+import GameScreen from './components/MainScreen'; // This should be another component you'll create for the actual game screen
 
-import './assets/css/reset.css'
-import './assets/css/style.css'
+function App() {
+  const [isGameStarted, setIsGameStarted] = useState(false);
 
-import Header from './components/Header'
-import Main from './components/Main'
-import Footer from './components/Footer'
-import Slider from './components/Slider'
-import Image from './components/Image'
-import ImgText from './components/ImgText'
-import Card from './components/Card'
-import Banner from './components/Banner'
-import Text from './components/Text'
+  const startGame = () => {
+    setIsGameStarted(true);
+  };
 
-const App = () => {
-    return (
-        <>
-            <Header element="nexon" />
-            <Main>
-                <Slider element="nexon" />
-                <Image element="section nexon" title="포트폴리오가 실력이다." />
-                <ImgText element="section nexon gray" title="이미지 텍스트 유형" />
-                <Card element="section nexon" title="웹스토리보이 강의" />
-                <Banner element="nexon" title="배너 영역" />
-                <Text element="section nexon" title="텍스트 유형01" />
-            </Main>
-            <Footer element="nexon section gray" />
-        </>
-    )
+  return (
+    <div className="App">
+      {isGameStarted ? <GameScreen /> : <MainScreen startGame={startGame} />}
+    </div>
+  );
 }
 
-export default App
+export default App;
