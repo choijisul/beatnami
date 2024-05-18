@@ -27,7 +27,7 @@ const GameScreen = ({ ScreenName, GoBackClick }) => {
         todoDrawing();
       }
     }
-ㅁ
+
     function todoDrawing() {
       let inter = setInterval(() => {
         ctx.clearRect(0, 0, width, height);
