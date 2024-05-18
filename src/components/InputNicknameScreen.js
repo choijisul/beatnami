@@ -1,9 +1,10 @@
 import React from 'react';
 import './css/InputNicknameScreen.css';
 
-const InputNicknameScreen = ({ ScreenName }) => {
+const InputNicknameScreen = ({ ScreenName, GoBackClick }) => {
   return (
     <div className='nickname-screen'>
+      <button className='back-button' onClick={GoBackClick}></button>
       <div className='input-border-div'>
         <div className='input-title'>닉네임</div>
         <div className='input-div'>

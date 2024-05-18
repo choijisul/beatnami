@@ -9,26 +9,30 @@
     text-align: center;
 }
 
-.input-border-div{
+.back-button {
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+    width: 4.6rem;
+    height: 4.5rem;
+    background-image: url('/src/assets/button/back.png');
+    background-size: cover;
+    background-color: transparent;
+    border: none; 
+    cursor: pointer;
+}
+
+.input-border-div {
     background: #362706;
     padding: 0.5rem;
 }
 
-.input-title{
+.input-title {
     padding: 0.7rem 10rem;
     background: #E9E5D6;
     font-size: 1.6rem;
     font-weight: 800;
 }
-
-/* .input-div {
-    margin-top: 0.5rem;
-    padding: 0.7rem 15rem;
-    background: #ACB992;
-    font-size: 1.6rem;
-    font-weight: 800;
-    box-sizing: border-box; 
-} */
 
 .input {
     margin-top: 0.5rem;
@@ -37,6 +41,7 @@
     background: #ACB992;
     font-size: 1.6rem;
     font-weight: 800;
+    outline: none; 
 }
 
 .goStory-button {

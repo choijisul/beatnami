@@ -34,7 +34,7 @@ function App() {
   return (
     <div className="App">
       {currentScreenName === "MAIN" && <MainScreen ScreenName={goNickNameScreen} />}
-      {currentScreenName === "NICKNAME" && <InputNicknameScreen ScreenName={goStoryScreen} />}
+      {currentScreenName === "NICKNAME" && <InputNicknameScreen ScreenName={goStoryScreen} GoBackClick={goMainScreen}/>}  {/* goBack이 뒤로 가기 */}
       {currentScreenName === "STORY" && <StoryScreen ScreenName={goGameScreen} />}
       {currentScreenName === "GAME" && <GameScreen ScreenName={goRankingScreen}/>}
       {currentScreenName === "RANKING" && <RankingScreen ScreenName={goMainScreen}/>}
