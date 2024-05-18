@@ -39,18 +39,22 @@ const CanvasAnimation = () => {
         ctx.drawImage(img2, move_x2, 0, img2.width, img2.height);
 
         // 속도
-        move_x1 -= 1; 
-        move_x2 -= 1; 
+        move_x1 -= 1;
+        move_x2 -= 1;
 
         if (move_x1 <= -width) move_x1 = width;
         if (move_x2 <= -width) move_x2 = width;
-      }, 5); // 간격을 5밀리초로 설정합니다.
+      }, 5);
 
       return () => clearInterval(inter);
     }
   }, []);
 
-  return <canvas ref={canvasRef}></canvas>;
+  return (
+    <div className='game-screen'>
+      <canvas ref={canvasRef}></canvas>;
+    </div>
+  )
 }
 
 export default CanvasAnimation;
