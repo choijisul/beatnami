@@ -3,10 +3,9 @@ import './css/GameScreen.css';
 import gameImg1 from './img/field-flower1.png';
 import gameImg2 from './img/field-flower2.png';
 
-const CanvasAnimation = () => {
+const GameScreen = () => {
   const canvasRef = useRef(null);
 
-  // 화면 슬라이드
   useEffect(() => {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
@@ -16,8 +15,8 @@ const CanvasAnimation = () => {
     canvas.width = width;
     canvas.height = height;
 
-    let move_x1 = 0;
-    let move_x2 = width;
+    let move_x1 = 0; // 첫 번째 이미지의 시작 위치
+    let move_x2 = width; // 두 번째 이미지의 시작 위치
 
     const img1 = new Image();
     const img2 = new Image();
@@ -34,16 +33,17 @@ const CanvasAnimation = () => {
       let inter = setInterval(() => {
         ctx.clearRect(0, 0, width, height);
 
-        // 화면에 그린 이미지
-        ctx.drawImage(img1, move_x1, 0, img1.width, img1.height);
-        ctx.drawImage(img2, move_x2, 0, img2.width, img2.height);
+        // 이미지가 왼쪽으로 이동하면서 화면을 채우도록 설정
+        ctx.drawImage(img1, move_x1, 0, width, height);
+        ctx.drawImage(img2, move_x2, 0, width, height);
 
-        // 속도
         move_x1 -= 1;
         move_x2 -= 1;
 
+        // 이미지가 계속해서 반복하여 슬라이드 될 수 있도록
         if (move_x1 <= -width) move_x1 = width;
-        if (move_x2 <= -width) move_x2 = width;
+        if (move_x2 <= 0) move_x2 = width;
+
       }, 5);
 
       return () => clearInterval(inter);
@@ -57,4 +57,4 @@ const CanvasAnimation = () => {
   )
 }
 
-export default CanvasAnimation;
+export default GameScreen;
