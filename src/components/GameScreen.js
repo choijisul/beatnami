@@ -1,29 +1,29 @@
 import React, { useEffect, useRef } from 'react';
 import './css/GameScreen.css';
+import gameImg1 from './img/field-flower1.png';
+import gameImg2 from './img/field-flower2.png';
 
-const GameScreen = ({ ScreenName, GoBackClick }) => {
+const CanvasAnimation = () => {
   const canvasRef = useRef(null);
 
-  // 화면 슬라이드
   useEffect(() => {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    let width = window.innerWidth;
+    let height = window.innerHeight;
 
-    let width = canvas.width;
-    let height = canvas.height;
+    canvas.width = width;
+    canvas.height = height;
 
     let move_x1 = 0;
     let move_x2 = width;
 
-    let img1 = new Image();
-    let img2 = new Image();
+    const img1 = new Image();
+    const img2 = new Image();
 
-    img1.src = '/src/assets/img/field-flower1.png';
-    img2.src = '/src/assets/img/field-flower2.png';
-
+    img1.src = gameImg1;
     img1.onload = function () {
+      img2.src = gameImg2;
       img2.onload = function () {
         todoDrawing();
       }
@@ -47,10 +47,14 @@ const GameScreen = ({ ScreenName, GoBackClick }) => {
     }
   }, []);
 
+  return <canvas ref={canvasRef}></canvas>;
+}
+
+const GameScreen = ({ ScreenName, GoBackClick }) => {
   return (
     <div className="game-screen">
+      <CanvasAnimation />
       <button className='back-button' onClick={GoBackClick}></button>
-      <canvas ref={canvasRef}></canvas>
     </div>
   );
 };
