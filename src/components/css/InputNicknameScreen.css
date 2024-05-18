@@ -55,3 +55,13 @@
     border-radius: 2px;
     cursor: pointer;
 }
+
+/* 슬라이드바 숨기기 */
+body,
+.box {
+    -ms-overflow-style: none;
+}
+.box::-webkit-scrollbar,
+::-webkit-scrollbar {
+    display: none;
+}
