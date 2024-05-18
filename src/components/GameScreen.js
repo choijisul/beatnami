@@ -6,6 +6,7 @@ import gameImg2 from './img/field-flower2.png';
 const CanvasAnimation = () => {
   const canvasRef = useRef(null);
 
+  // 화면 슬라이드
   useEffect(() => {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
@@ -33,15 +34,17 @@ const CanvasAnimation = () => {
       let inter = setInterval(() => {
         ctx.clearRect(0, 0, width, height);
 
-        ctx.drawImage(img1, move_x1, 0, width, height);
-        ctx.drawImage(img2, move_x2, 0, width, height);
+        // 화면에 그린 이미지
+        ctx.drawImage(img1, move_x1, 0, img1.width, img1.height);
+        ctx.drawImage(img2, move_x2, 0, img2.width, img2.height);
 
-        move_x1 -= 1;
-        move_x2 -= 1;
+        // 속도
+        move_x1 -= 1; 
+        move_x2 -= 1; 
 
         if (move_x1 <= -width) move_x1 = width;
         if (move_x2 <= -width) move_x2 = width;
-      }, 10);
+      }, 5); // 간격을 5밀리초로 설정합니다.
 
       return () => clearInterval(inter);
     }
@@ -50,13 +53,4 @@ const CanvasAnimation = () => {
   return <canvas ref={canvasRef}></canvas>;
 }
 
-const GameScreen = ({ ScreenName, GoBackClick }) => {
-  return (
-    <div className="game-screen">
-      <CanvasAnimation />
-      <button className='back-button' onClick={GoBackClick}></button>
-    </div>
-  );
-};
-
-export default GameScreen;
+export default CanvasAnimation;
