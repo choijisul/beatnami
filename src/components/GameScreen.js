@@ -2,9 +2,9 @@ import React, { useEffect, useRef } from 'react';
 import './css/GameScreen.css';
 
 const GameScreen = ({ ScreenName, GoBackClick }) => {
-
   const canvasRef = useRef(null);
 
+  // 화면 슬라이드
   useEffect(() => {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
@@ -21,8 +21,9 @@ const GameScreen = ({ ScreenName, GoBackClick }) => {
     let img2 = new Image();
 
     img1.src = '/src/assets/img/field-flower1.png';
+    img2.src = '/src/assets/img/field-flower2.png';
+
     img1.onload = function () {
-      img2.src = '/src/assets/img/field-flower2.png';
       img2.onload = function () {
         todoDrawing();
       }
@@ -48,7 +49,7 @@ const GameScreen = ({ ScreenName, GoBackClick }) => {
 
   return (
     <div className="game-screen">
-      <button className='back-button' onClick={GoBackClick} />
+      <button className='back-button' onClick={GoBackClick}></button>
       <canvas ref={canvasRef}></canvas>
     </div>
   );
