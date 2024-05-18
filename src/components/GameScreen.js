@@ -1,13 +1,12 @@
 import React from 'react';
+import './css/GameScreen.css';
 
-const GameScreen = ({ ScreenName }) => {
+const GameScreen = ({ ScreenName, GoBackClick }) => {
   return (
-    <div>
-      <h1>게임 화면, 못 박는..</h1>
-      <button onClick={ScreenName}>랭킹으로 넘어감</button>
+    <div className="game-screen">
+      <button className='back-button' onClick={GoBackClick} />
     </div>
   );
 };
-
 
 export default GameScreen;
