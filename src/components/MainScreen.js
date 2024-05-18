@@ -1,11 +1,11 @@
 import React from 'react';
 import './css/MainScreen.css';
 
-const MainScreen = ({ startGame }) => {
+const MainScreen = ({ ScreenName }) => {
   return (
     <div className="main-screen">
       <h1 className="title">비트나미</h1>
-      <button className="start-button" onClick={startGame}>Start</button>
+      <button className="start-button" onClick={ScreenName}>Start</button>
     </div>
   );
 };
