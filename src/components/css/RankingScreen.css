@@ -1,0 +1,62 @@
+.ranking-screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-image: url('/src/assets/img/MainBackground.png');
+    background-size: cover;
+    text-align: center;
+}
+
+.back-button {
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+    width: 4.6rem;
+    height: 4.5rem;
+    background-image: url('/src/assets/button/back.png');
+    background-size: cover;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.ranking-bord {
+    position: absolute;
+    width: 37rem;
+    height: 40rem;
+    background-image: url('/src/assets/img/ranking-bord.png');
+    background-size: cover;
+}
+
+.ranking-div {
+    padding: 4.3rem 1.4rem;
+}
+
+.ranking-text-div {
+    display: flex; 
+    flex-direction: row;
+    width: 100%;
+    height: 4.4rem;
+    margin-bottom: 0.53rem;
+    align-items: center;
+}
+
+.no{
+    margin-left: 2rem;
+    font-size: 3rem;
+    color: white;
+}
+
+.nickname{
+    margin-left: 1.2rem;
+    font-size: 1.6rem;
+    color: white;
+}
+
+.score{
+    margin-left: 17rem;
+    font-size: 1.4rem;
+    color: white;
+}
