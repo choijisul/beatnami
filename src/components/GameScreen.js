@@ -3,7 +3,7 @@ import './css/GameScreen.css';
 import gameImg1 from './img/field-flower1.png';
 import gameImg2 from './img/field-flower2.png';
 
-const GameScreen = () => {
+const GameScreen = ({ ScreenName, GoBackClick }) => {
   const canvasRef = useRef(null);
 
   useEffect(() => {
@@ -52,6 +52,7 @@ const GameScreen = () => {
 
   return (
     <div className='game-screen'>
+      <button className='back-button' onClick={GoBackClick}></button>
       <canvas ref={canvasRef}></canvas>;
     </div>
   )
