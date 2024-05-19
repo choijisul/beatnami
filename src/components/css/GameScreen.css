@@ -9,14 +9,6 @@ body,
     display: none;
 }
 
-/* 배경화면 */
-/* .game-screen {
-    background-image: url('/src/assets/img/field-flower1.png');
-    background-size: cover;
-    background-position: center;
-    height: 100vh;
-} */
-
 /* 뒤로가기 버튼 */
 .back-button {
     position: absolute;
