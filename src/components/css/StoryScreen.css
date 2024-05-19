@@ -1,0 +1,50 @@
+html, body {
+  margin: 0; /* 전체 페이지에 마진을 0으로 설정 */
+  padding: 0; /* 기본 패딩도 제거 */
+  height: 100%; /* 전체 높이를 100%로 설정 */
+}
+
+.story-screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  height: 100vh;
+  padding: 20px;
+  background-image: url('/src/assets/img/subway.png'); /* 배경 이미지 설정 */
+  background-size: cover; /* 이미지 크기 조절 */
+  background-position: center; /* 이미지 위치 조정 */
+  background-repeat: no-repeat; /* 이미지 반복 방지 */
+  box-sizing: border-box; /* 패딩 포함 박스 사이징 */
+}
+
+.dialogue-box {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 800px;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  margin: 0;
+  box-sizing: border-box; /* 패딩 포함 박스 사이징 */
+}
+
+.dialogue-text {
+  flex-grow: 1;
+}
+
+button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 0;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
