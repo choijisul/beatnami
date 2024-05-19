@@ -53,8 +53,12 @@ const GameScreen = ({ ScreenName, GoBackClick }) => {
   return (
     <div className='game-screen'>
       <button className='back-button' onClick={GoBackClick}></button>
+<<<<<<< HEAD
+      <canvas ref={canvasRef}></canvas>
+=======
       <button className='' onClick={ScreenName}></button>    {/* 다음으로 넘어가는 버튼 */}
         <canvas ref={canvasRef}></canvas>;
+>>>>>>> 26da5acd2d7dbef62bc5d7959191da6cd5378190
     </div>
   )
 }
