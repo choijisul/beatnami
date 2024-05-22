@@ -1,7 +1,7 @@
 html, body {
-  margin: 0; /* 전체 페이지에 마진을 0으로 설정 */
-  padding: 0; /* 기본 패딩도 제거 */
-  height: 100%; /* 전체 높이를 100%로 설정 */
+  margin: 0;
+  padding: 0;
+  height: 100%;
 }
 
 .story-screen {
@@ -11,11 +11,11 @@ html, body {
   align-items: center;
   height: 100vh;
   padding: 20px;
-  background-image: url('/src/assets/img/subway.png'); /* 배경 이미지 설정 */
-  background-size: cover; /* 이미지 크기 조절 */
-  background-position: center; /* 이미지 위치 조정 */
-  background-repeat: no-repeat; /* 이미지 반복 방지 */
-  box-sizing: border-box; /* 패딩 포함 박스 사이징 */
+  background-image: url('/src/assets/img/subway.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  box-sizing: border-box;
 }
 
 .dialogue-box {
@@ -28,7 +28,7 @@ html, body {
   padding: 20px;
   border-radius: 10px;
   margin: 0;
-  box-sizing: border-box; /* 패딩 포함 박스 사이징 */
+  box-sizing: border-box;
 }
 
 .dialogue-text {

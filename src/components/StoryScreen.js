@@ -1,14 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './css/StoryScreen.css';
-
-const dialogues = [
-  { name: 'Person 1', dialogue: '안녕하세요. 여기는 스토리 화면입니다.' },
-  { name: 'Person 2', dialogue: '안녕하세요. 반갑습니다!' },
-  { name: 'Person 1', dialogue: '게임 화면으로 넘어갈 준비 되셨나요?' },
-];
+import dialoguesData from '../assets/dialog.json'; // JSON 파일 경로를 맞게 설정
 
 const StoryScreen = ({ ScreenName }) => {
   const [currentDialogueIndex, setCurrentDialogueIndex] = useState(0);
+  const [dialogues, setDialogues] = useState([]);
+
+  useEffect(() => {
+    // JSON 데이터를 state에 설정
+    setDialogues(dialoguesData);
+  }, []);
 
   const handleDialogueClick = () => {
     if (currentDialogueIndex < dialogues.length - 1) {
@@ -17,6 +18,8 @@ const StoryScreen = ({ ScreenName }) => {
       ScreenName();
     }
   };
+
+  if (dialogues.length === 0) return null; // 데이터가 로드되기 전에는 아무것도 표시하지 않음
 
   const { name, dialogue } = dialogues[currentDialogueIndex];
 
@@ -35,5 +38,3 @@ const StoryScreen = ({ ScreenName }) => {
 };
 
 export default StoryScreen;
-
-//hdkfjhdk
