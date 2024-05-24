@@ -16,6 +16,7 @@ const InputNicknameScreen = ({ ScreenName, GoBackClick }) => {
     localStorage.setItem('users', JSON.stringify(updatedUsers));  //사용자 목록 localstorage에 저장
 
     console.log('Stored Users:', updatedUsers);
+    ScreenName(nickname); // 닉네임을 전달하여 화면 전환
   };
 
   return (
@@ -33,7 +34,7 @@ const InputNicknameScreen = ({ ScreenName, GoBackClick }) => {
           />
         </div>
       </div>
-      <button className='goStory-button' onClick={() => { handleConfirmClick(); ScreenName(); }}>확인</button>
+      <button className='goStory-button' onClick={handleConfirmClick}>확인</button>
     </div>
   );
 };

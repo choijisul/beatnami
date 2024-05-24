@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './css/StoryScreen.css';
-import dialoguesData from '../assets/dialog.json'; // JSON 파일 경로를 맞게 설정
+import dialoguesData from '../assets/dialog.json'; // JSON 파일 경로
 
-const StoryScreen = ({ ScreenName }) => {
+const StoryScreen = ({ ScreenName, nickname }) => {
   const [currentDialogueIndex, setCurrentDialogueIndex] = useState(0);
   const [dialogues, setDialogues] = useState([]);
 
@@ -22,17 +22,16 @@ const StoryScreen = ({ ScreenName }) => {
   if (dialogues.length === 0) return null; // 데이터가 로드되기 전에는 아무것도 표시하지 않음
 
   const { name, dialogue } = dialogues[currentDialogueIndex];
+  const displayName = name === 'Person 1' ? nickname : name; // 'Person 1' 이름을 닉네임으로 변경
 
   return (
     <div className="story-screen">
-      <div className="dialogue-box">
+      <div className="dialogue-box" onClick={handleDialogueClick}>
         <div className="dialogue-text">
-          <p><strong>{name}:</strong> {dialogue}</p>
+          <p className="dialogue-name"><strong>{displayName}:</strong></p>
+          <p className="dialogue-line">{dialogue}</p>
         </div>
       </div>
-      <button onClick={handleDialogueClick}>
-        {currentDialogueIndex < dialogues.length - 1 ? '다음 대사' : '게임 화면으로 넘어감'}
-      </button>
     </div>
   );
 };
