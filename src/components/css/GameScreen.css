@@ -30,3 +30,17 @@ body {
 canvas {
     border: 1px solid gray;
 }
+
+/* 이미지버튼 배경 부분 삭제 */
+.volum-button, .back-button {
+    background-size: cover;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+/* 음량 조절 버튼 */
+.volum-button {
+    width: 3rem; /* 너비 설정 */
+    height: 3rem; /* 높이 설정 */
+}

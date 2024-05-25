@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import './css/GameScreen.css';
 import gameImg1 from './img/field-flower1.png';
 import gameImg2 from './img/field-flower2.png';
-import './img/icon-volum.png';
+import iconVolum from './img/icon-volum.png';
 
 const GameScreen = ({ ScreenName, GoBackClick }) => {
   const canvasRef = useRef(null);
@@ -51,9 +51,16 @@ const GameScreen = ({ ScreenName, GoBackClick }) => {
     }
   }, []);
 
+  function VolumButton() {
+    // 버튼 클릭 이벤트 처리
+  }
+
   return (
     <div className='game-screen'>
       <button className='back-button' onClick={GoBackClick} />
+      <button className='volum-button' onClick={VolumButton}>
+        <img src={iconVolum} alt="볼륨" />
+      </button>
       <button className='' onClick={ScreenName} />    {/* 다음으로 넘어가는 버튼 */}
       <canvas ref={canvasRef} />
     </div>
