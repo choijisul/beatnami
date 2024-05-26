@@ -37,7 +37,7 @@
     }
 
     /* 이미지버튼 크기 조절 */
-    .volum-button > img {
+    .volum-button>img {
         width: 55%;
         height: 55%;
     }
