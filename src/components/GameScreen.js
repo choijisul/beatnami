@@ -58,15 +58,12 @@ const GameScreen = ({ ScreenName, GoBackClick }) => {
   return (
     <div className='game-screen'>
       <button className='back-button' onClick={GoBackClick} />
-
-      {/* 음량 조절 */}
       <div className='volum'>
         <button className='volum-button' onClick={VolumButton}>
           <img src={iconVolum} alt="볼륨" />
         </button>
       </div>
-
-      <button className='' onClick={ScreenName} />    {/* 다음으로 넘어가는 버튼 */}
+      <button onClick={ScreenName} /> {/* 다음으로 넘어가는 버튼 */}
       <canvas ref={canvasRef} />
     </div>
   )

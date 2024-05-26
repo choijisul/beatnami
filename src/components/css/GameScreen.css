@@ -9,6 +9,14 @@ body,
     display: none;
 }
 
+/* 공통 버튼 스타일 */
+button {
+    background-size: cover;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
 /* 뒤로가기 버튼 */
 .back-button {
     position: absolute;
@@ -17,10 +25,17 @@ body,
     width: 4.6rem;
     height: 4.5rem;
     background-image: url('/src/assets/button/back.png');
-    background-size: cover;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
+    z-index: 10;
+}
+
+/* 음량 버튼 */
+.volum-button {
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+    width: 4.6rem;  /* 버튼 크기 조정 */
+    height: 4.5rem; /* 버튼 크기 조정 */
+    z-index: 20;
 }
 
 /* 화면 슬라이드 */
@@ -32,18 +47,12 @@ canvas {
     border: 1px solid gray;
 }
 
-/* 이미지버튼 배경 부분 삭제 */
-.volum-button,
-.back-button {
-    background-size: cover;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-}
-
-.volum-button {
-    width: 100px;
-    /* 너비 설정 */
-    height: 100px;
-    /* 높이 설정 */
+/* 겹치도록 모든 버튼을 동일한 위치에 배치 */
+.game-screen > button {
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+    width: 4.6rem;
+    height: 4.5rem;
+    z-index: 30;
 }
