@@ -55,6 +55,7 @@ const GameScreen = ({ ScreenName, GoBackClick }) => {
   function VolumButton() {
     // 버튼 클릭 이벤트 처리 (임시)
   }
+  
 
   return (
     <div className='game-screen'>
