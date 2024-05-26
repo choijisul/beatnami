@@ -38,8 +38,8 @@
 
     /* 이미지버튼 크기 조절 */
     .volum-button>img {
-        width: 55%;
-        height: 55%;
+        width: 50%;
+        height: 50%;
     }
 
     /* 다음 버튼 */
