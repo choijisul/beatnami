@@ -9,14 +9,6 @@ body,
     display: none;
 }
 
-/* 배경화면 */
-/* .game-screen {
-    background-image: url('/src/assets/img/field-flower1.png');
-    background-size: cover;
-    background-position: center;
-    height: 100vh;
-} */
-
 /* 뒤로가기 버튼 */
 .back-button {
     position: absolute;
@@ -35,6 +27,23 @@ body,
 body {
     text-align: center;
 }
+
 canvas {
     border: 1px solid gray;
+}
+
+/* 이미지버튼 배경 부분 삭제 */
+.volum-button,
+.back-button {
+    background-size: cover;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.volum-button {
+    width: 100px;
+    /* 너비 설정 */
+    height: 100px;
+    /* 높이 설정 */
 }
