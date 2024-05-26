@@ -21,9 +21,17 @@ const RankingScreen = ({ ScreenName }) => {
     });
   };
 
+  const handleClearLocalStorage = () => {
+    // if(){}  //만약 특정 시간이면.
+    // localStorage.removeItem('nickname');
+    // localStorage.removeItem('score');
+    // localStorage.removeItem('users');   
+    ScreenName(); 
+  };
+
   return (
     <div className='ranking-screen'>
-      <button className='back-button' onClick={ScreenName}></button>
+      <button className='back-button' onClick={handleClearLocalStorage}></button>
       <div className='ranking-bord'>
         <div className='ranking-div'>
           {renderRankings()}
