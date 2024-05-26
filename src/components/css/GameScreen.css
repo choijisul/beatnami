@@ -25,7 +25,7 @@ button {
     width: 4.6rem;
     height: 4.5rem;
     background-image: url('/src/assets/button/back.png');
-    z-index: 10;
+    z-index: 30;
 }
 
 /* 음량 버튼 */
@@ -33,9 +33,21 @@ button {
     position: absolute;
     top: 2rem;
     left: 2rem;
-    width: 4.6rem;  /* 버튼 크기 조정 */
-    height: 4.5rem; /* 버튼 크기 조정 */
+    width: 4.6rem;
+    /* 버튼 크기 조정 */
+    height: 4.5rem;
+    /* 버튼 크기 조정 */
     z-index: 20;
+}
+
+/* 다음 버튼 */
+.next-button {
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+    width: 4.6rem;
+    height: 4.5rem;
+    z-index: 10;
 }
 
 /* 화면 슬라이드 */
@@ -45,14 +57,4 @@ body {
 
 canvas {
     border: 1px solid gray;
-}
-
-/* 겹치도록 모든 버튼을 동일한 위치에 배치 */
-.game-screen > button {
-    position: absolute;
-    top: 2rem;
-    left: 2rem;
-    width: 4.6rem;
-    height: 4.5rem;
-    z-index: 30;
 }

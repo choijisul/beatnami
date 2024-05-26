@@ -7,6 +7,7 @@ import iconVolum from './img/icon-volum.png';
 const GameScreen = ({ ScreenName, GoBackClick }) => {
   const canvasRef = useRef(null);
 
+  // 화면 슬라이드
   useEffect(() => {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
@@ -16,8 +17,8 @@ const GameScreen = ({ ScreenName, GoBackClick }) => {
     canvas.width = width;
     canvas.height = height;
 
-    let move_x1 = 0; // 첫 번째 이미지의 시작 위치
-    let move_x2 = width; // 두 번째 이미지의 시작 위치
+    let move_x1 = 0;      // 첫 번째 이미지의 시작 위치
+    let move_x2 = width;  // 두 번째 이미지의 시작 위치
 
     const img1 = new Image();
     const img2 = new Image();
@@ -30,6 +31,7 @@ const GameScreen = ({ ScreenName, GoBackClick }) => {
       }
     }
 
+    // 슬라이드 되는 화면 이미지가 그려지도록
     function todoDrawing() {
       let inter = setInterval(() => {
         ctx.clearRect(0, 0, width, height);
@@ -46,13 +48,12 @@ const GameScreen = ({ ScreenName, GoBackClick }) => {
         if (move_x2 <= 0) move_x2 = width;
 
       }, 5);
-
       return () => clearInterval(inter);
     }
   }, []);
 
   function VolumButton() {
-    // 버튼 클릭 이벤트 처리
+    // 버튼 클릭 이벤트 처리 (임시)
   }
 
   return (
@@ -63,7 +64,7 @@ const GameScreen = ({ ScreenName, GoBackClick }) => {
           <img src={iconVolum} alt="볼륨" />
         </button>
       </div>
-      <button onClick={ScreenName} /> {/* 다음으로 넘어가는 버튼 */}
+      <button className='next-button' onClick={ScreenName} /> {/* 다음으로 넘어가는 버튼 */}
       <canvas ref={canvasRef} />
     </div>
   )
