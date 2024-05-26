@@ -10,13 +10,15 @@ const RankingScreen = ({ ScreenName }) => {
       if (index < 7) { // 7위까지 출력
         return (
           <div key={index} className='ranking-text-div'>
-            <h3 className='no'>{index + 1}</h3>
-            <h5 className='nickname'>{user.nickname}</h5> 
-            <h5 className='score'>{user.score}</h5> 
+            <div className='noNickname'>
+              <h3 className='no'>{index + 1}</h3>
+              <h5 className='nickname'>{user.nickname}</h5>
+            </div>
+            <h5 className='score'>{user.score}</h5>
           </div>
         );
       } else {
-        return null; 
+        return null;
       }
     });
   };
@@ -28,11 +30,11 @@ const RankingScreen = ({ ScreenName }) => {
 
     // 특정 시간에 localstorage값 지워지게.  //
     if (currentHour === 10 && currentMinute === 20) {
-        localStorage.removeItem('nickname');
-        localStorage.removeItem('score');
-        localStorage.removeItem('users');   
+      localStorage.removeItem('nickname');
+      localStorage.removeItem('score');
+      localStorage.removeItem('users');
     }
-};
+  };
 
   return (
     <div className='ranking-screen'>

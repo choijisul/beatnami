@@ -44,6 +44,17 @@
     outline: none; 
 }
 
+.random-nickname{
+    margin-left: 0.4rem;
+    padding: 1.1rem 1rem;
+    text-align: center;
+    background: #ACB992;
+    font-size: 1rem;
+    font-weight: 800;
+    border-radius: 0;
+    outline: none; 
+}
+
 .goStory-button {
     margin-top: 2rem;
     font-size: 1.6rem;
