@@ -39,8 +39,7 @@ canvas {
     cursor: pointer;
 }
 
-/* 음량 조절 버튼 */
 .volum-button {
-    width: 3rem; /* 너비 설정 */
-    height: 3rem; /* 높이 설정 */
+    width: 100px; /* 너비 설정 */
+    height: 100px; /* 높이 설정 */
 }
