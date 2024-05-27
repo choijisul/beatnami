@@ -8,3 +8,5 @@ root.render(
     <App />
   </React.StrictMode>
 );
+
+// 지설 commit test2 (지워도 O)

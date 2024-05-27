@@ -36,11 +36,18 @@
 
 .ranking-text-div {
     display: flex; 
+    justify-content: space-between;
     flex-direction: row;
-    width: 100%;
+    width: 93%;
     height: 4.4rem;
     margin-bottom: 0.53rem;
     align-items: center;
+}
+
+.noNickname{
+    display: flex; 
+    align-items: center;
+    width: 100%;
 }
 
 .no{
@@ -56,7 +63,6 @@
 }
 
 .score{
-    margin-left: 17rem;
     font-size: 1.4rem;
     color: white;
 }

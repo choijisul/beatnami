@@ -1,0 +1,15 @@
+[
+    {
+      "name": "Person 1",
+      "dialogue": "안녕하세요. 여기는 스토리 화면입니다."
+    },
+    {
+      "name": "Person 2",
+      "dialogue": "안녕하세요. 반갑습니다!"
+    },
+    {
+      "name": "Person 1",
+      "dialogue": "게임 화면으로 넘어갈 준비 되셨나요?"
+    }
+  ]
+  
