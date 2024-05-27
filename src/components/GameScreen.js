@@ -59,7 +59,15 @@ const GameScreen = ({ ScreenName, GoBackClick }) => {
 
   return (
     <div className='game-screen'>
+
       <button className='back-button' onClick={GoBackClick} />
+      {/* 음악 재생 */}
+      <div className='background-music'>
+        <audio ref={audioRef} src={gameMusic} loop></audio>
+        <button onClick={playMusic}>음악 재생</button>
+      </div>
+
+      {/* 음량 조절 버튼 */}
       <div className='volum'>
         <button className='volum-button' onClick={VolumButton}>
           <img src={iconVolum} alt="볼륨" />
