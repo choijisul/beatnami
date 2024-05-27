@@ -3,9 +3,11 @@ import './css/GameScreen.css';
 import gameImg1 from './img/field-flower1.png';
 import gameImg2 from './img/field-flower2.png';
 import iconVolum from './img/icon-volum.png';
+import gameMusic from './background-music/round1.mp3';  // gameMusic을 import 합니다.
 
 const GameScreen = ({ ScreenName, GoBackClick }) => {
   const canvasRef = useRef(null);
+  const audioRef = useRef(null);  // audioRef를 useRef로 정의합니다.
 
   // 화면 슬라이드
   useEffect(() => {
@@ -52,15 +54,23 @@ const GameScreen = ({ ScreenName, GoBackClick }) => {
     }
   }, []);
 
+  const playMusic = () => {
+    if (audioRef.current) {
+      audioRef.current.play().catch(error => {
+        console.error('자동 재생이 차단되었습니다:', error);
+      });
+    }
+  };
+
   function VolumButton() {
     // 버튼 클릭 이벤트 처리 (임시)
   }
-  
 
   return (
     <div className='game-screen'>
-
+      {/* 이전 페이지 이동 */}
       <button className='back-button' onClick={GoBackClick} />
+
       {/* 음악 재생 */}
       <div className='background-music'>
         <audio ref={audioRef} src={gameMusic} loop></audio>
@@ -73,7 +83,8 @@ const GameScreen = ({ ScreenName, GoBackClick }) => {
           <img src={iconVolum} alt="볼륨" />
         </button>
       </div>
-      <button className='next-button' onClick={ScreenName} /> {/* 다음으로 넘어가는 버튼 */}
+
+      <button className='next-button' onClick={ScreenName} />
       <canvas ref={canvasRef} />
     </div>
   )
