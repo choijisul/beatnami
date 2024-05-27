@@ -3,11 +3,9 @@ import './css/GameScreen.css';
 import gameImg1 from './img/field-flower1.png';
 import gameImg2 from './img/field-flower2.png';
 import iconVolum from './img/icon-volum.png';
-import gameMusic from './background-music/round1.mp3';
 
 const GameScreen = ({ ScreenName, GoBackClick }) => {
   const canvasRef = useRef(null);
-  const audioRef = useRef(null);
 
   // 화면 슬라이드
   useEffect(() => {
@@ -54,41 +52,23 @@ const GameScreen = ({ ScreenName, GoBackClick }) => {
     }
   }, []);
 
-  const playMusic = () => {
-    if (audioRef.current) {
-      audioRef.current.play().catch(error => {
-        console.error('자동 재생이 차단되었습니다:', error);
-      });
-    }
-  };
-
-  const VolumButton = () => {
+  function VolumButton() {
     // 버튼 클릭 이벤트 처리 (임시)
   }
+  
 
   return (
     <div className='game-screen'>
-      {/* 음악 재생 */}
-      <audio ref={audioRef} src={gameMusic} loop></audio>
-      <button onClick={playMusic}>음악 재생</button>
-
-      {/* 음량 조절 버튼 */}
+      <button className='back-button' onClick={GoBackClick} />
       <div className='volum'>
         <button className='volum-button' onClick={VolumButton}>
           <img src={iconVolum} alt="볼륨" />
         </button>
       </div>
-
-      {/* 이전 페이지로 이동 */}
-      <button className='back-button' onClick={GoBackClick} />
-
-      {/* 다음 페이지로 이동 */}
-      <button className='next-button' onClick={ScreenName} />
-
-      {/* 이동하는 이미지 */}
+      <button className='next-button' onClick={ScreenName} /> {/* 다음으로 넘어가는 버튼 */}
       <canvas ref={canvasRef} />
     </div>
-  );
+  )
 }
 
 export default GameScreen;
