@@ -7,6 +7,7 @@ import gameMusic from '../assets/background-music/round1.mp3';
 
 const GameScreen = ({ ScreenName, GoBackClick }) => {
   const canvasRef = useRef(null);
+  const audioRef = useRef(null);  // audioRef를 useRef로 정의합니다.
 
   // 화면 슬라이드
   useEffect(() => {
@@ -53,10 +54,17 @@ const GameScreen = ({ ScreenName, GoBackClick }) => {
     }
   }, []);
 
+  const playMusic = () => {
+    if (audioRef.current) {
+      audioRef.current.play().catch(error => {
+        console.error('자동 재생이 차단되었습니다:', error);
+      });
+    }
+  };
+
   function VolumButton() {
     // 버튼 클릭 이벤트 처리 (임시)
   }
-
 
   return (
     <div className='game-screen'>
