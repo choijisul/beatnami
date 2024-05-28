@@ -56,12 +56,18 @@ const GameScreen = ({ ScreenName, GoBackClick }) => {
   function VolumButton() {
     // 버튼 클릭 이벤트 처리 (임시)
   }
-  
+
 
   return (
     <div className='game-screen'>
+      {/* 이전 페이지 이동 */}
+      <button className='back-button' onClick={GoBackClick} />
 
-      
+      {/* 음악 재생 */}
+      <div className='background-music'>
+        <audio ref={audioRef} src={gameMusic} loop></audio>
+        <button onClick={playMusic}>음악 재생</button>
+      </div>
 
       {/* 음량 조절 버튼 */}
       <div className='volum'>
@@ -70,10 +76,6 @@ const GameScreen = ({ ScreenName, GoBackClick }) => {
         </button>
       </div>
 
-      {/* 뒤로 이동 버튼 */}
-      <button className='back-button' onClick={GoBackClick} />
-
-       {/* 다음으로 넘어가는 버튼 */}
       <button className='next-button' onClick={ScreenName} />
       <canvas ref={canvasRef} />
     </div>
