@@ -3,7 +3,7 @@ import './css/GameScreen.css';
 import gameImg1 from '../assets/img/field-flower1.png';
 import gameImg2 from '../assets/img/field-flower2.png';
 import iconVolum from '../assets/img/icon-volum.png';
-import gameMusic from '../assets/background-music/round1.mp3';
+import gameMusic from '..//assets/background-music/round1.mp3';
 
 const GameScreen = ({ ScreenName, GoBackClick }) => {
   const canvasRef = useRef(null);
@@ -61,7 +61,7 @@ const GameScreen = ({ ScreenName, GoBackClick }) => {
   return (
     <div className='game-screen'>
 
-      <button className='back-button' onClick={GoBackClick} />
+      
 
       {/* 음량 조절 버튼 */}
       <div className='volum'>
@@ -69,7 +69,12 @@ const GameScreen = ({ ScreenName, GoBackClick }) => {
           <img src={iconVolum} alt="볼륨" />
         </button>
       </div>
-      <button className='next-button' onClick={ScreenName} /> {/* 다음으로 넘어가는 버튼 */}
+
+      {/* 뒤로 이동 버튼 */}
+      <button className='back-button' onClick={GoBackClick} />
+
+       {/* 다음으로 넘어가는 버튼 */}
+      <button className='next-button' onClick={ScreenName} />
       <canvas ref={canvasRef} />
     </div>
   )
