@@ -3,7 +3,7 @@ import './css/GameScreen.css';
 import gameImg1 from '../assets/img/field-flower1.png';
 import gameImg2 from '../assets/img/field-flower2.png';
 import iconVolum from '../assets/img/icon-volum.png';
-import gameMusic from '..//assets/background-music/round1.mp3';
+import gameMusic from '../assets/background-music/round1.mp3';
 
 const GameScreen = ({ ScreenName, GoBackClick }) => {
   const canvasRef = useRef(null);
