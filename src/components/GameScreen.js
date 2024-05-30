@@ -84,6 +84,9 @@ const GameScreen = ({ ScreenName, GoBackClick }) => {
         </button>
       </div>
 
+      {/* 음량 조절 슬라이드바 */}
+      <input type="range" min="1" max="12" className='volum-slide' />
+
       <button className='next-button' onClick={ScreenName} />
       <canvas ref={canvasRef} />
     </div>
