@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './css/GameScreen.css';
 import gameImg1 from '../assets/img/field-flower1.png';
 import gameImg2 from '../assets/img/field-flower2.png';
@@ -8,6 +8,7 @@ import gameMusic from '../assets/background-music/round1.mp3';
 const GameScreen = ({ ScreenName, GoBackClick }) => {
   const canvasRef = useRef(null);
   const audioRef = useRef(null);  // audioRef를 useRef로 정의합니다.
+  const [showVolumeSlide, setShowVolumeSlide] = useState(false); // 슬라이드 바 표시 상태
 
   // 화면 슬라이드
   useEffect(() => {
@@ -62,8 +63,8 @@ const GameScreen = ({ ScreenName, GoBackClick }) => {
     }
   };
 
-  function VolumButton() {
-    // 버튼 클릭 이벤트 처리 (임시)
+  const VolumButton = () => {
+    setShowVolumeSlide(!showVolumeSlide); // 슬라이드 바 표시 상태를 토글
   }
 
   return (
@@ -80,12 +81,14 @@ const GameScreen = ({ ScreenName, GoBackClick }) => {
       {/* 음량 조절 버튼 */}
       <div className='volum'>
         <button className='volum-button' onClick={VolumButton}>
-          <img src={iconVolum} alt="볼륨" />
+          <img src={iconVolum} alt="Volume" />
         </button>
       </div>
 
       {/* 음량 조절 슬라이드바 */}
-      <input type="range" min="1" max="12" className='volum-slide' />
+      {showVolumeSlide && (
+        <input type="range" min="1" max="12" className='volum-slide' />
+      )}
 
       <button className='next-button' onClick={ScreenName} />
       <canvas ref={canvasRef} />
