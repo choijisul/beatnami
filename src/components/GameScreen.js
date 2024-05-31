@@ -51,7 +51,7 @@ const GameScreen = ({ ScreenName, GoBackClick }) => {
         if (move_x1 <= -width) move_x1 = width;
         if (move_x2 <= 0) move_x2 = width;
 
-      }, 5);
+      }, );
       return () => clearInterval(inter);
     }
   }, []);
