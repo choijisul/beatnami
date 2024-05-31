@@ -9,6 +9,7 @@ const GameScreen = ({ ScreenName, GoBackClick }) => {
   const canvasRef = useRef(null);
   const audioRef = useRef(null);  // audioRef를 useRef로 정의합니다.
   const [showVolumeSlide, setShowVolumeSlide] = useState(false); // 슬라이드 바 표시 상태
+  const [volume, setVolume] = useState(6); // 초기 볼륨 값 (1~12 중간값)
 
   // 화면 슬라이드
   useEffect(() => {
@@ -55,6 +56,12 @@ const GameScreen = ({ ScreenName, GoBackClick }) => {
     }
   }, []);
 
+  useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.volume = volume / 12; // 볼륨을 1~12 범위에서 0~1 범위로 조정
+    }
+  }, [volume]);
+
   const playMusic = () => {
     if (audioRef.current) {
       audioRef.current.play().catch(error => {
@@ -65,6 +72,10 @@ const GameScreen = ({ ScreenName, GoBackClick }) => {
 
   const VolumButton = () => {
     setShowVolumeSlide(!showVolumeSlide); // 슬라이드 바 표시 상태를 토글
+  }
+
+  const handleVolumeChange = (event) => {
+    setVolume(event.target.value); // 볼륨 값 업데이트
   }
 
   return (
@@ -87,7 +98,14 @@ const GameScreen = ({ ScreenName, GoBackClick }) => {
 
       {/* 음량 조절 슬라이드바 */}
       {showVolumeSlide && (
-        <input type="range" min="1" max="12" className='volum-slide' />
+        <input
+          type="range"
+          min="1"
+          max="12"
+          value={volume}
+          onChange={handleVolumeChange}
+          className='volum-slide'
+        />
       )}
 
       <button className='next-button' onClick={ScreenName} />
