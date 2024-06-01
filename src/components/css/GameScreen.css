@@ -66,5 +66,12 @@ canvas {
     top: 10px;
     left: 10px;
     z-index: 10;
-    /* 배경보다 앞에 오도록 높은 값 설정 */
+}
+
+/* 음량 조절 슬라이드바 */
+.volum-slide {
+    position: absolute;
+    top: 7.5%;
+    right: 7.5%;
+    z-index: 25;
 }
