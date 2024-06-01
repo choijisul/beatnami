@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './css/GameScreen.css';
 import gameImg1 from '../assets/img/field-flower1.png';
 import gameImg2 from '../assets/img/field-flower2.png';
@@ -8,6 +8,8 @@ import gameMusic from '../assets/background-music/round1.mp3';
 const GameScreen = ({ ScreenName, GoBackClick }) => {
   const canvasRef = useRef(null);
   const audioRef = useRef(null);  // audioRef를 useRef로 정의합니다.
+  const [showVolumeSlide, setShowVolumeSlide] = useState(false); // 슬라이드 바 표시 상태
+  const [volume, setVolume] = useState(6); // 초기 볼륨 값 (1~12 중간값)
 
   // 화면 슬라이드
   useEffect(() => {
@@ -49,10 +51,16 @@ const GameScreen = ({ ScreenName, GoBackClick }) => {
         if (move_x1 <= -width) move_x1 = width;
         if (move_x2 <= 0) move_x2 = width;
 
-      }, 5);
+      }, );
       return () => clearInterval(inter);
     }
   }, []);
+
+  useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.volume = volume / 12; // 볼륨을 1~12 범위에서 0~1 범위로 조정
+    }
+  }, [volume]);
 
   const playMusic = () => {
     if (audioRef.current) {
@@ -62,8 +70,12 @@ const GameScreen = ({ ScreenName, GoBackClick }) => {
     }
   };
 
-  function VolumButton() {
-    // 버튼 클릭 이벤트 처리 (임시)
+  const VolumButton = () => {
+    setShowVolumeSlide(!showVolumeSlide); // 슬라이드 바 표시 상태를 토글
+  }
+
+  const handleVolumeChange = (event) => {
+    setVolume(event.target.value); // 볼륨 값 업데이트
   }
 
   return (
@@ -80,12 +92,21 @@ const GameScreen = ({ ScreenName, GoBackClick }) => {
       {/* 음량 조절 버튼 */}
       <div className='volum'>
         <button className='volum-button' onClick={VolumButton}>
-          <img src={iconVolum} alt="볼륨" />
+          <img src={iconVolum} alt="Volume" />
         </button>
       </div>
 
       {/* 음량 조절 슬라이드바 */}
-      <input type="range" min="1" max="12" className='volum-slide' />
+      {showVolumeSlide && (
+        <input
+          type="range"
+          min="1"
+          max="12"
+          value={volume}
+          onChange={handleVolumeChange}
+          className='volum-slide'
+        />
+      )}
 
       <button className='next-button' onClick={ScreenName} />
       <canvas ref={canvasRef} />
