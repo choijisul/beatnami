@@ -4,6 +4,7 @@ body,
     -ms-overflow-style: none;
 }
 
+/* 화면에 스크롤바가 안 보이도록 */
 .box::-webkit-scrollbar,
 ::-webkit-scrollbar {
     display: none;
@@ -57,10 +58,12 @@ body {
     text-align: center;
 }
 
+/* 배경 슬라이드 화면 */
 canvas {
     border: 1px solid gray;
 }
 
+/* 음악 재생 버튼 */
 .background-music {
     position: absolute;
     top: 10px;

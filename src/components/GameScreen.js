@@ -1,13 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
-import './css/GameScreen.css';
 import gameImg1 from '../assets/img/field-flower1.png';
 import gameImg2 from '../assets/img/field-flower2.png';
 import iconVolum from '../assets/img/icon-volum.png';
 import gameMusic from '../assets/background-music/round1.mp3';
+import './css/GameScreen.css';
 
 const GameScreen = ({ ScreenName, GoBackClick }) => {
   const canvasRef = useRef(null);
-  const audioRef = useRef(null);  // audioRef를 useRef로 정의합니다.
+  const audioRef = useRef(null);
   const [showVolumeSlide, setShowVolumeSlide] = useState(false); // 슬라이드 바 표시 상태
   const [volume, setVolume] = useState(6); // 초기 볼륨 값 (1~12 중간값)
 
@@ -51,17 +51,19 @@ const GameScreen = ({ ScreenName, GoBackClick }) => {
         if (move_x1 <= -width) move_x1 = width;
         if (move_x2 <= 0) move_x2 = width;
 
-      }, );
+      },);
       return () => clearInterval(inter);
     }
   }, []);
 
+  // 볼륨을 1~12 범위에서 0~1 범위로 조정
   useEffect(() => {
     if (audioRef.current) {
-      audioRef.current.volume = volume / 12; // 볼륨을 1~12 범위에서 0~1 범위로 조정
+      audioRef.current.volume = volume / 12;
     }
   }, [volume]);
 
+  // 배경음악 소리가 나오게
   const playMusic = () => {
     if (audioRef.current) {
       audioRef.current.play().catch(error => {
@@ -70,12 +72,14 @@ const GameScreen = ({ ScreenName, GoBackClick }) => {
     }
   };
 
+  // 음량 조절 슬라이드바 토글 형태
   const VolumButton = () => {
-    setShowVolumeSlide(!showVolumeSlide); // 슬라이드 바 표시 상태를 토글
+    setShowVolumeSlide(!showVolumeSlide);
   }
 
+  // 음량 조절 기능
   const handleVolumeChange = (event) => {
-    setVolume(event.target.value); // 볼륨 값 업데이트
+    setVolume(event.target.value);
   }
 
   return (
@@ -108,7 +112,10 @@ const GameScreen = ({ ScreenName, GoBackClick }) => {
         />
       )}
 
+      {/* 다음 페이지 이동 */}
       <button className='next-button' onClick={ScreenName} />
+
+      {/* 배경을 그림 */}
       <canvas ref={canvasRef} />
     </div>
   )
