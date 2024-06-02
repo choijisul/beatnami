@@ -1,38 +1,132 @@
-[
-  {
-    "name": "nickname",
-    "dialogue": "이 피자 내가 어렸을 적 먹던 피자랑 똑같은 피자네. 한 번 더 먹어보고 싶다... 그래!! 이 피자를 먹으러 떠나는 거야!!"
-  },
-  {
-    "name": "nickname",
-    "dialogue": "옆 마을로 가기 위해 기차역에 도착했다."
-  },
-  {
-    "name": "기장",
-    "dialogue": "아 이 기차는 선로 고장으로 운영을 중지하게 되었습니다. 승객 여러분은 하루정도 기차에서 지내셔야 될 것 같습니다."
-  },
-  {
-    "name": "nickname",
-    "dialogue": "시골에서 못질은 많이 해봤으니 내가 해야겠군!"
-  },
-  {
-    "name": "기장",
-    "dialogue": "승객여러분. 철도 문제가 해결되어 다시 기차 운영을 합니다. 밖에 계신 승객분은 10분 내로 타주시길 바랍니다."
-  },
-  {
-    "name": "nickname",
-    "dialogue": "혹시 여기 제가 할만한 일자리가 있을까요?"
-  },
-  {
-    "name": "마을 이장님",
-    "dialogue": "마을 회관 밖에 게시판을 보면 의뢰처가 있는데 그 의뢰를 해결하면 사례금으로 쏠쏠하게 벌 수 있을거야~"
-  },
-  {
-    "name": "nickname",
-    "dialogue": "이장님의 말을 듣고 의뢰처를 살펴보자 내가 할 수 있을만한 의뢰들이 보였다."
-  },
-  {
-    "name": "nickname",
-    "dialogue": "꽃으로 마당 꾸며주실 분 구합니다. 그래! 이걸로 피자 먹을 돈을 버는거야!"
-  }
-]
+{
+  "trainstation_scene": [
+    {
+      "name": "nickname",
+      "dialogue": " 이 피자 내가 어렸을 적 먹던 피자랑 똑같은 피자네. 한 번 더 먹어보고 싶다... ",
+      "next": 1
+    },
+    {
+      "name": "nickname",
+      "dialogue": " 그래!! 이 피자를 먹으러 떠나는 거야!!",
+      "next": 2
+    },
+    {
+      "name": "nickname",
+      "dialogue": " 옆 마을로 가기 위해 기차역에 도착했다.",
+      "next": 3
+    },
+    {
+      "name": "기장",
+      "dialogue": " 아-- 이 기차는 선로 고장으로 운영을 중지하게 되었습니다.",
+      "next": 4
+    },
+    {
+      "name": "기장",
+      "dialogue": " 승객 여러분은 하루정도 기차에서 지내셔야 될 것 같습니다.",
+      "next": 5
+    },
+    {
+      "name": "nickname",
+      "dialogue": " 시골에서 못질은 많이 해봤으니 내가 해야겠군!",
+      "next": 6
+    },
+    {
+      "name": "기장",
+      "dialogue": " 승객여러분. 철도 문제가 해결되어 다시 기차 운영을 합니다.",
+      "next": 7
+    },
+    {
+      "name": "기장",
+      "dialogue": " 밖에 계신 승객분은 10분 내로 타주시길 바랍니다.",
+      "next": 8
+    },
+    {
+      "name": "nickname",
+      "dialogue": " 혹시 여기 제가 할만한 일자리가 있을까요?",
+      "next": 9
+    },
+    {
+      "name": "마을 이장님",
+      "dialogue": " 마을 회관 밖에 게시판을 보면 의뢰처가 있는데 그 의뢰를 해결하면 사례금으로 쏠쏠하게 벌 수 있을거야~",
+      "next": 10
+    },
+    {
+      "name": "nickname",
+      "dialogue": " 이장님의 말을 듣고 의뢰처를 살펴보자 내가 할 수 있을만한 의뢰들이 보였다.",
+      "next": 11
+    },
+    {
+      "name": "nickname",
+      "dialogue": " 꽃으로 마당 꾸며주실 분 구합니다. 그래! 이걸로 피자 먹을 돈을 버는거야!",
+      "next": "garden_scene"
+    }
+  ],
+  "garden_scene": [
+    {
+      "name": "nickname",
+      "dialogue": " ...조금 돈이 모자라는 것 같은데",
+      "next": "flower_owner"
+    }
+  ],
+  "flower_owner": [
+    {
+      "name": "꽃 주인장",
+      "dialogue": " 저기 우리 집사람이 오두막 집에서 숙박 운영을 하고 있는데 솜씨가 좋을 것 같은데, 혹시 우리 오두막도 고쳐줄 수 있을까?",
+      "next": 1
+    },
+    {
+      "name": "nickname",
+      "dialogue": " 음.. 혹시 추가 사례금 있나요?",
+      "next": 2
+    },
+    {
+      "name": "꽃 주인장",
+      "dialogue": " 아~ 당연하지. 방금 받은 사례금의 곱절로 줄거야!",
+      "next": 3
+    },
+    {
+      "name": "nickname",
+      "dialogue": " 헉! 그 돈이면 피자를 먹고도 남잖아! 오두막 고치겠습니다!",
+      "next": "cabin_scene"
+    }
+  ],
+  "cabin_scene": [
+    {
+      "name": "nickname",
+      "dialogue": " 이제 돈도 다 모였겠다. 피자 먹으러 가야지!!",
+      "next": "pizza_scene"
+    }
+  ],
+  "pizza_scene": [
+    {
+      "name": "system",
+      "dialogue": " (검은화면 -> 1시간 후 -> 다시 서서히 밝아짐)",
+      "next": 1
+    },
+    {
+      "name": "nickname",
+      "dialogue": " 좋았어! 여러 의뢰를 마치고 나는 피자 가게에서 피자를 사먹고도 남을 충분한 돈이 생겼다.",
+      "next": 2
+    },
+    {
+      "name": "system",
+      "dialogue": "(배경을 피자가게 안. 피자가게에 도착한 주인공)",
+      "next": 3
+    },
+    {
+      "name": "nickname",
+      "dialogue": " 아~ 이 피자냄새! 진짜 오랜만이다. 빨리 먹고싶어!",
+      "next": 4
+    },
+    {
+      "name": "system",
+      "dialogue": "(피자를 들고있는 주인공)",
+      "next": 5
+    },
+    {
+      "name": "nickname",
+      "dialogue": " 피자의 맛은 어렸을 적 먹은 추억의 맛과 같았다!",
+      "next": null
+    }
+  ]
+}

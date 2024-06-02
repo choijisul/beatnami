@@ -22,9 +22,9 @@ html, body {
   display: flex;
   align-items: center;
   justify-content: center; /* 대사창 내부 콘텐츠 중앙 정렬 */
-  width: 100%;
-  height: 300px;
-  max-width: 1200px;
+  width: 90%; /* 다이얼로그 박스의 너비를 90%로 설정 */
+  height: 40%; /* 다이얼로그 박스의 높이를 40%로 설정 */
+  max-width: 1600px; /* 최대 너비 설정 */
   background-image: url('/src/assets/img/post-window.png'); /* 대사창 배경 이미지 설정 */
   background-size: contain; /* 이미지 크기 조절 */
   background-position: center; /* 이미지 위치 조정 */
@@ -32,7 +32,7 @@ html, body {
   color: rgb(0, 0, 0);
   box-sizing: border-box; /* 패딩 포함 박스 사이징 */
   position: absolute; /* 대사창 위치 고정 */
-  bottom: 10px; /* 화면 하단에서 10px 위에 위치 */
+  bottom: 20px; /* 화면 하단에서 20px 위에 위치 */
   left: 50%; /* 수평 중앙 정렬 */
   transform: translateX(-50%); /* 수평 중앙 정렬 보정 */
   cursor: pointer; /* 클릭 가능한 포인터 표시 */
@@ -43,5 +43,5 @@ html, body {
 }
 
 .dialogue-name {
-  
+  font-weight: bold;
 }
