@@ -1,9 +1,8 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import './css/StoryScreen.css';
-import dialoguesData from '../assets/dialog.json'; // JSON 파일 경로
+import endingDialogData from '../assets/endingdialog.json'; // JSON 파일 경로
 
-const StoryScreen = ({ ScreenName, nickname }) => {
-  const [currentScene, setCurrentScene] = useState('trainstation_scene');
+const EndingStorydialog = ({ ScreenName, nickname }) => {
   const [currentDialogueIndex, setCurrentDialogueIndex] = useState(0);
   const [currentText, setCurrentText] = useState('');
   const [isAnimating, setIsAnimating] = useState(false);
@@ -12,8 +11,8 @@ const StoryScreen = ({ ScreenName, nickname }) => {
 
   // 대사 데이터 설정
   useEffect(() => {
-    setDialogues(dialoguesData[currentScene]);
-  }, [currentScene]);
+    setDialogues(endingDialogData);
+  }, []);
 
   // 애니메이션 시작
   const startAnimation = useCallback((dialogue) => {
@@ -41,9 +40,6 @@ const StoryScreen = ({ ScreenName, nickname }) => {
       const nextDialogue = dialogues[currentDialogueIndex]?.next;
       if (nextDialogue === null) {
         ScreenName(); // 스크린 이름 변경 함수 호출
-      } else if (typeof nextDialogue === 'string') {
-        setCurrentScene(nextDialogue);
-        setCurrentDialogueIndex(0);
       } else if (typeof nextDialogue === 'number') {
         setCurrentDialogueIndex(nextDialogue);
       }
@@ -78,9 +74,7 @@ const StoryScreen = ({ ScreenName, nickname }) => {
   const { name } = dialogues[currentDialogueIndex] || {};
 
   return (
-    <div className="story-screen">
-      {/* Ending 스토리로 넘어가는 임시 버튼 */}
-      <button onClick={() => ScreenName()} style={{ position: 'absolute', top: '20px', left: '20px' }}>Ending 스토리로 이동</button>
+    <div className="story-screen" style={{ backgroundImage: "url('/src/assets/img/pizzashop.png')" }}>
       <div className="dialogue-box" onClick={handleDialogueClick}>
         <div className="dialogue-text">
           <p>
@@ -92,4 +86,4 @@ const StoryScreen = ({ ScreenName, nickname }) => {
   );
 };
 
-export default StoryScreen;
+export default EndingStorydialog;
