@@ -1,91 +1,38 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import './css/StoryScreen.css';
-import dialoguesData from '../assets/dialog.json'; // JSON 파일 경로
+import dialoguesData from '../assets/dialog.json'; // JSON 파일 경로를 맞게 설정
 
-const StoryScreen = ({ ScreenName, nickname }) => {
-  const [currentScene, setCurrentScene] = useState('trainstation_scene');
+const StoryScreen = ({ ScreenName }) => {
   const [currentDialogueIndex, setCurrentDialogueIndex] = useState(0);
-  const [currentText, setCurrentText] = useState('');
-  const [isAnimating, setIsAnimating] = useState(false);
   const [dialogues, setDialogues] = useState([]);
-  const currentInterval = useRef(null);
 
   useEffect(() => {
-    // 현재 씬의 대사 데이터를 state에 설정
-    setDialogues(dialoguesData[currentScene]);
-  }, [currentScene]);
+    // JSON 데이터를 state에 설정
+    setDialogues(dialoguesData);
+  }, []);
 
-  const startAnimation = (dialogue) => {
-    setIsAnimating(true);
-    setCurrentText('');
-    let index = 0;
-    const interval = setInterval(() => {
-      setCurrentText((prev) => (prev !== undefined ? prev + dialogue.charAt(index) : dialogue.charAt(index)));
-      index++;
-      if (index === dialogue.length) {
-        clearInterval(interval);
-        setIsAnimating(false);
-      }
-    }, 50);
-    currentInterval.current = interval;
-  };
-
-  const handleDialogueClick = useCallback(() => {
-    if (isAnimating) {
-      // 애니메이션 중이면 대사를 모두 출력
-      clearInterval(currentInterval.current);
-      setCurrentText(dialogues[currentDialogueIndex].dialogue);
-      setIsAnimating(false);
+  const handleDialogueClick = () => {
+    if (currentDialogueIndex < dialogues.length - 1) {
+      setCurrentDialogueIndex(currentDialogueIndex + 1);
     } else {
-      // 애니메이션이 끝났다면 다음 대사로 이동
-      const nextDialogue = dialogues[currentDialogueIndex]?.next;
-      if (nextDialogue === null) {
-        // 스토리가 끝난 경우
-        ScreenName();
-      } else if (typeof nextDialogue === 'string') {
-        // 다음 씬으로 전환
-        setCurrentScene(nextDialogue);
-        setCurrentDialogueIndex(0);
-      } else if (typeof nextDialogue === 'number') {
-        // 현재 씬의 다음 대사로 이동
-        setCurrentDialogueIndex(nextDialogue);
-      }
+      ScreenName();
     }
-  }, [isAnimating, currentDialogueIndex, dialogues, ScreenName]);
-
-  useEffect(() => {
-    if (dialogues.length > 0) {
-      startAnimation(dialogues[currentDialogueIndex].dialogue || '');
-    }
-  }, [currentDialogueIndex, dialogues]);
-
-  useEffect(() => {
-    const handleKeyDown = (event) => {
-      if (event.key === 'Enter' || event.key === ' ') {
-        handleDialogueClick();
-      }
-    };
-
-    window.addEventListener('keydown', handleKeyDown);
-
-    return () => {
-      window.removeEventListener('keydown', handleKeyDown);
-    };
-  }, [handleDialogueClick]);
+  };
 
   if (dialogues.length === 0) return null; // 데이터가 로드되기 전에는 아무것도 표시하지 않음
 
-  const { name } = dialogues[currentDialogueIndex] || {}; // 안전하게 접근
+  const { name, dialogue } = dialogues[currentDialogueIndex];
 
   return (
     <div className="story-screen">
-      <div className="dialogue-box" onClick={handleDialogueClick}>
+      <div className="dialogue-box">
         <div className="dialogue-text">
-          <p>
-            <strong>{name === 'nickname' ? nickname : name}:</strong> {currentText}
-          </p>
+          <p><strong>{name}:</strong> {dialogue}</p>
         </div>
       </div>
+      <button onClick={handleDialogueClick}>
+        {currentDialogueIndex < dialogues.length - 1 ? '다음 대사' : '게임 화면으로 넘어감'}
+      </button>
     </div>
   );
 };

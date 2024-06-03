@@ -1,40 +1,70 @@
-/* 슬라이드바 숨기기 */
-body,
-.box {
-    -ms-overflow-style: none;
-}
+    /* 슬라이드바 숨기기 */
+    body,
+    .box {
+        -ms-overflow-style: none;
+    }
 
-.box::-webkit-scrollbar,
-::-webkit-scrollbar {
-    display: none;
-}
+    .box::-webkit-scrollbar,
+    ::-webkit-scrollbar {
+        display: none;
+    }
 
-/* 배경화면 */
-/* .game-screen {
-    background-image: url('/src/assets/img/field-flower1.png');
-    background-size: cover;
-    background-position: center;
-    height: 100vh;
-} */
+    /* 공통 버튼 스타일 */
+    button {
+        background-size: cover;
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+    }
 
-/* 뒤로가기 버튼 */
-.back-button {
-    position: absolute;
-    top: 2rem;
-    left: 2rem;
-    width: 4.6rem;
-    height: 4.5rem;
-    background-image: url('/src/assets/button/back.png');
-    background-size: cover;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-}
+    /* 뒤로가기 버튼 */
+    .back-button {
+        position: absolute;
+        top: 5%;
+        left: 5%;
+        width: 11.5%;
+        height: 11.25%;
+        background-image: url('/src/assets/button/back.png');
+        z-index: 30;
+    }
 
-/* 화면 슬라이드 */
-body {
-    text-align: center;
-}
-canvas {
-    border: 1px solid gray;
-}
+    /* 음량 버튼 */
+    .volum-button {
+        position: absolute;
+        top: 3%;
+        right: -1%;
+        z-index: 20;
+    }
+
+    /* 이미지버튼 크기 조절 */
+    .volum-button>img {
+        width: 55%;
+        height: 55%;
+    }
+
+    /* 다음 버튼 */
+    .next-button {
+        position: absolute;
+        top: 5%;
+        left: 20%;
+        width: 11.5%;
+        height: 11.25%;
+        z-index: 10;
+    }
+
+    /* 화면 슬라이드 */
+    body {
+        text-align: center;
+    }
+
+    canvas {
+        border: 1px solid gray;
+    }
+
+    .background-music {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        z-index: 10; /* 배경보다 앞에 오도록 높은 값 설정 */
+      }
+      

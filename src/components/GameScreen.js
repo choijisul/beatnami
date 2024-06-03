@@ -1,11 +1,15 @@
 import React, { useEffect, useRef } from 'react';
 import './css/GameScreen.css';
-import gameImg1 from './img/field-flower1.png';
-import gameImg2 from './img/field-flower2.png';
+import gameImg1 from '../assets/img/field-flower1.png';
+import gameImg2 from '../assets/img/field-flower2.png';
+import iconVolum from '../assets/img/icon-volum.png';
+import gameMusic from '../assets/background-music/round1.mp3';
 
 const GameScreen = ({ ScreenName, GoBackClick }) => {
   const canvasRef = useRef(null);
+  const audioRef = useRef(null);  // audioRef를 useRef로 정의합니다.
 
+  // 화면 슬라이드
   useEffect(() => {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
@@ -15,8 +19,8 @@ const GameScreen = ({ ScreenName, GoBackClick }) => {
     canvas.width = width;
     canvas.height = height;
 
-    let move_x1 = 0; // 첫 번째 이미지의 시작 위치
-    let move_x2 = width; // 두 번째 이미지의 시작 위치
+    let move_x1 = 0;      // 첫 번째 이미지의 시작 위치
+    let move_x2 = width;  // 두 번째 이미지의 시작 위치
 
     const img1 = new Image();
     const img2 = new Image();
@@ -29,6 +33,7 @@ const GameScreen = ({ ScreenName, GoBackClick }) => {
       }
     }
 
+    // 슬라이드 되는 화면 이미지가 그려지도록
     function todoDrawing() {
       let inter = setInterval(() => {
         ctx.clearRect(0, 0, width, height);
@@ -45,17 +50,42 @@ const GameScreen = ({ ScreenName, GoBackClick }) => {
         if (move_x2 <= 0) move_x2 = width;
 
       }, 5);
-
       return () => clearInterval(inter);
     }
   }, []);
 
+  const playMusic = () => {
+    if (audioRef.current) {
+      audioRef.current.play().catch(error => {
+        console.error('자동 재생이 차단되었습니다:', error);
+      });
+    }
+  };
+
+  function VolumButton() {
+    // 버튼 클릭 이벤트 처리 (임시)
+  }
+
   return (
     <div className='game-screen'>
-      <button className='back-button' onClick={GoBackClick}></button>
-      <canvas ref={canvasRef}></canvas>
-      <button className='' onClick={ScreenName}></button>    {/* 다음으로 넘어가는 버튼 */}
-        <canvas ref={canvasRef}></canvas>;
+      {/* 이전 페이지 이동 */}
+      <button className='back-button' onClick={GoBackClick} />
+
+      {/* 음악 재생 */}
+      <div className='background-music'>
+        <audio ref={audioRef} src={gameMusic} loop></audio>
+        <button onClick={playMusic}>음악 재생</button>
+      </div>
+
+      {/* 음량 조절 버튼 */}
+      <div className='volum'>
+        <button className='volum-button' onClick={VolumButton}>
+          <img src={iconVolum} alt="볼륨" />
+        </button>
+      </div>
+
+      <button className='next-button' onClick={ScreenName} />
+      <canvas ref={canvasRef} />
     </div>
   )
 }
