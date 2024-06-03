@@ -1,11 +1,17 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import gameImg1 from '../assets/img/field-flower1.png';
+import gameImg2 from '../assets/img/field-flower2.png';
+import iconVolum from '../assets/img/icon-volum.png';
+import gameMusic from '../assets/background-music/round1.mp3';
 import './css/GameScreen.css';
-import gameImg1 from './img/field-flower1.png';
-import gameImg2 from './img/field-flower2.png';
 
 const GameScreen = ({ ScreenName, GoBackClick }) => {
   const canvasRef = useRef(null);
+  const audioRef = useRef(null);
+  const [showVolumeSlide, setShowVolumeSlide] = useState(false); // 슬라이드 바 표시 상태
+  const [volume, setVolume] = useState(6); // 초기 볼륨 값 (1~12 중간값)
 
+  // 화면 슬라이드
   useEffect(() => {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
@@ -15,8 +21,8 @@ const GameScreen = ({ ScreenName, GoBackClick }) => {
     canvas.width = width;
     canvas.height = height;
 
-    let move_x1 = 0; // 첫 번째 이미지의 시작 위치
-    let move_x2 = width; // 두 번째 이미지의 시작 위치
+    let move_x1 = 0;      // 첫 번째 이미지의 시작 위치
+    let move_x2 = width;  // 두 번째 이미지의 시작 위치
 
     const img1 = new Image();
     const img2 = new Image();
@@ -29,6 +35,7 @@ const GameScreen = ({ ScreenName, GoBackClick }) => {
       }
     }
 
+    // 슬라이드 되는 화면 이미지가 그려지도록
     function todoDrawing() {
       let inter = setInterval(() => {
         ctx.clearRect(0, 0, width, height);
@@ -44,18 +51,72 @@ const GameScreen = ({ ScreenName, GoBackClick }) => {
         if (move_x1 <= -width) move_x1 = width;
         if (move_x2 <= 0) move_x2 = width;
 
-      }, 5);
-
+      },);
       return () => clearInterval(inter);
     }
   }, []);
 
+  // 볼륨을 1~12 범위에서 0~1 범위로 조정
+  useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.volume = volume / 12;
+    }
+  }, [volume]);
+
+  // 배경음악 소리가 나오게
+  const playMusic = () => {
+    if (audioRef.current) {
+      audioRef.current.play().catch(error => {
+        console.error('자동 재생이 차단되었습니다:', error);
+      });
+    }
+  };
+
+  // 음량 조절 슬라이드바 토글 형태
+  const VolumButton = () => {
+    setShowVolumeSlide(!showVolumeSlide);
+  }
+
+  // 음량 조절 기능
+  const handleVolumeChange = (event) => {
+    setVolume(event.target.value);
+  }
+
   return (
     <div className='game-screen'>
-      <button className='back-button' onClick={GoBackClick}></button>
-      <canvas ref={canvasRef}></canvas>
-      <button className='' onClick={ScreenName}></button>    {/* 다음으로 넘어가는 버튼 */}
-        <canvas ref={canvasRef}></canvas>;
+      {/* 이전 페이지 이동 */}
+      <button className='back-button' onClick={GoBackClick} />
+
+      {/* 음악 재생 */}
+      <div className='background-music'>
+        <audio ref={audioRef} src={gameMusic} loop></audio>
+        <button onClick={playMusic}>음악 재생</button>
+      </div>
+
+      {/* 음량 조절 버튼 */}
+      <div className='volum'>
+        <button className='volum-button' onClick={VolumButton}>
+          <img src={iconVolum} alt="Volume" />
+        </button>
+      </div>
+
+      {/* 음량 조절 슬라이드바 */}
+      {showVolumeSlide && (
+        <input
+          type="range"
+          min="1"
+          max="12"
+          value={volume}
+          onChange={handleVolumeChange}
+          className='volum-slide'
+        />
+      )}
+
+      {/* 다음 페이지 이동 */}
+      <button className='next-button' onClick={ScreenName} />
+
+      {/* 배경을 그림 */}
+      <canvas ref={canvasRef} />
     </div>
   )
 }
