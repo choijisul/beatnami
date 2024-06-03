@@ -5,16 +5,17 @@ import StoryScreen from './components/StoryScreen';
 import GameScreen from './components/GameScreen';
 import RankingScreen from './components/RankingScreen';
 
-
 function App() {
   // 현재 표시할 화면을 구분하기 위한 상태 값
   const [currentScreenName, setCurrentScreenName] = useState("MAIN");
+  const [nickname, setNickname] = useState(''); // 닉네임 상태 추가
 
   const goNickNameScreen = () => {
     setCurrentScreenName("NICKNAME");
   };
 
-  const goStoryScreen = () => {
+  const goStoryScreen = (nickname) => {
+    setNickname(nickname); // 닉네임 설정
     setCurrentScreenName("STORY");
   };
   
@@ -34,11 +35,16 @@ function App() {
   return (
     <div className="App">
       {currentScreenName === "MAIN" && <MainScreen ScreenName={goNickNameScreen} />}
-      {currentScreenName === "NICKNAME" && <InputNicknameScreen ScreenName={goStoryScreen} GoBackClick={goMainScreen}/>}  {/* goBack이 뒤로 가기 */}
-      {currentScreenName === "STORY" && <StoryScreen ScreenName={goGameScreen} />}
-      {currentScreenName === "GAME" && <GameScreen ScreenName={goRankingScreen}/>}
-      {currentScreenName === "GAME" && <GameScreen ScreenName={goRankingScreen} GoBackClick={goStoryScreen}/>}
-      {currentScreenName === "RANKING" && <RankingScreen ScreenName={goMainScreen}/>}
+      {currentScreenName === "NICKNAME" && (
+        <InputNicknameScreen ScreenName={goStoryScreen} GoBackClick={goMainScreen} />
+      )}
+      {currentScreenName === "STORY" && (
+        <StoryScreen ScreenName={goGameScreen} nickname={nickname} /> // 닉네임 전달
+      )}
+      {currentScreenName === "GAME" && (
+        <GameScreen ScreenName={goRankingScreen} GoBackClick={goStoryScreen} />
+      )}
+      {currentScreenName === "RANKING" && <RankingScreen ScreenName={goMainScreen} />}
     </div>
   );
 }
