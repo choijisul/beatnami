@@ -1,0 +1,12 @@
+{
+  "pizza_scene": [
+    { "name": "기장", "dialogue": " 승객여러분. 철도 문제가 해결되어 다시 기차 운영을 합니다.", "next": 1 },
+    { "name": "기장", "dialogue": " 밖에 계신 승객분은 10분 내로 타주시길 바랍니다.", "next": 2 },
+    { "name": "system", "dialogue": " (검은화면 -> 1시간 후 -> 다시 서서히 밝아짐)", "next": 3 },
+    { "name": "system", "dialogue": " (배경을 피자가게 안. 피자가게에 도착한 주인공)", "next": 4 },
+    { "name": "nickname", "dialogue": " 아~ 이 피자냄새! 진짜 오랜만이다. 빨리 먹고싶어!", "next": 5 },
+    { "name": "system", "dialogue": " (피자를 들고있는 주인공)", "next": 6 },
+    { "name": "nickname", "dialogue": " 피자의 맛은 어렸을 적 먹은 추억의 맛과 같았다!", "next": null }
+  ]
+  }
+  

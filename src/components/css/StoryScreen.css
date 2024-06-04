@@ -21,27 +21,38 @@ html, body {
 .dialogue-box {
   display: flex;
   align-items: center;
-  justify-content: center; /* 대사창 내부 콘텐츠 중앙 정렬 */
-  width: 90%; /* 다이얼로그 박스의 너비를 90%로 설정 */
-  height: 40%; /* 다이얼로그 박스의 높이를 40%로 설정 */
-  max-width: 1600px; /* 최대 너비 설정 */
-  background-image: url('/src/assets/img/post-window.png'); /* 대사창 배경 이미지 설정 */
-  background-size: contain; /* 이미지 크기 조절 */
-  background-position: center; /* 이미지 위치 조정 */
-  background-repeat: no-repeat; /* 이미지 반복 없음 */
+  justify-content: center;
+  width: 80%; /* 너비를 80%로 조정 */
+  height: 70%; /* 높이를 80%로 조정 */
+  max-width: 1600px;
+  background-image: url('/src/assets/img/post-window.png');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
   color: rgb(0, 0, 0);
-  box-sizing: border-box; /* 패딩 포함 박스 사이징 */
-  position: absolute; /* 대사창 위치 고정 */
-  bottom: 20px; /* 화면 하단에서 20px 위에 위치 */
-  left: 50%; /* 수평 중앙 정렬 */
-  transform: translateX(-50%); /* 수평 중앙 정렬 보정 */
-  cursor: pointer; /* 클릭 가능한 포인터 표시 */
+  box-sizing: border-box;
+  position: absolute;
+  bottom: -160px;
+  left: 50%;
+  transform: translateX(-50%);
+  cursor: pointer;
 }
 
 .dialogue-text {
-  flex-grow: 1;
+  display: flex;
+  padding: 50px;
+  font-size: 20px;
 }
+
 
 .dialogue-name {
   font-weight: bold;
+}
+
+#nickname {
+  /* 닉네임 스타일을 여기에 추가합니다. */
+  position: relative;
+  top: -30px;
+  right: 120px;
+  font-size: 22px;
 }
