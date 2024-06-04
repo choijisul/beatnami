@@ -2,6 +2,7 @@ html, body {
   margin: 0;
   padding: 0;
   height: 100%;
+  overflow: hidden; /* 화면이 고정되게 설정 */
 }
 
 .story-screen {
@@ -10,9 +11,9 @@ html, body {
   justify-content: flex-end;
   align-items: center;
   height: 100vh;
-  padding: 20px;
+  padding: 0; /* 패딩 제거하여 여백 없앰 */
   background-image: url('/src/assets/img/subway.png');
-  background-size: cover;
+  background-size: cover; /* 배경 이미지가 화면에 꽉 차게 설정 */
   background-position: center;
   background-repeat: no-repeat;
   box-sizing: border-box;
@@ -23,7 +24,7 @@ html, body {
   align-items: center;
   justify-content: center;
   width: 80%; /* 너비를 80%로 조정 */
-  height: 70%; /* 높이를 80%로 조정 */
+  height: 70%; /* 높이를 70%로 조정 */
   max-width: 1600px;
   background-image: url('/src/assets/img/post-window.png');
   background-size: contain;
@@ -32,27 +33,26 @@ html, body {
   color: rgb(0, 0, 0);
   box-sizing: border-box;
   position: absolute;
-  bottom: -160px;
+  bottom: -180px; /* 화면 아래에 고정 */
   left: 50%;
   transform: translateX(-50%);
   cursor: pointer;
 }
 
+#nickname {
+  position: absolute;
+  bottom: calc(100% - 250px); /* 대화 상자의 상단에 위치하도록 설정 */
+  left: 280px; /* 왼쪽으로 10px만큼 이동 */
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+
 .dialogue-text {
   display: flex;
-  padding: 50px;
+  flex-direction: column; /* 대사를 상하로 배치하기 위해 column으로 설정 */
+  align-items: center; /* 가운데 정렬 */
+  justify-content: center; /* 가운데 정렬 */
   font-size: 20px;
-}
-
-
-.dialogue-name {
-  font-weight: bold;
-}
-
-#nickname {
-  /* 닉네임 스타일을 여기에 추가합니다. */
-  position: relative;
-  top: -30px;
-  right: 120px;
-  font-size: 22px;
+  margin-top: 20px; /* 대사와 닉네임 사이의 간격을 조절 */
 }
