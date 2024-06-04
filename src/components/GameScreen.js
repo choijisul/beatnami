@@ -116,10 +116,13 @@ const GameScreen = ({ ScreenName, GoBackClick }) => {
       prevImages.map(image => {
         if (image.id === id) {
           const newSrc = image.isClicked ? pondimg : pongDrive;
+          const newTop = image.isClicked ? '50%' : 'calc(50% - 50px)'; // 이미지가 눌렸을 때와 눌리지 않았을 때의 top 위치를 변경
+
           return {
             ...image,
             isClicked: !image.isClicked,
-            src: newSrc
+            src: newSrc,
+            top: newTop, // 새로운 top 위치 설정
           };
         }
         return image;

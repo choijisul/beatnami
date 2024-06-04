@@ -1,34 +1,4 @@
-.main-screen {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  background-image: url('/src/assets/img/MainBackground.png'); /*이미지 불러옴*/
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  color: white;
-  text-align: center;
-}
-  .start-button {
-    position: absolute;
-    bottom: calc(100% - 330px); /* 대화 상자의 상단에 위치하도록 설정 */
-    font-size: 1.5rem;
-    padding: 1rem 2rem;
-    color: #282c34;
-    background-color: #61dafb;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-  }
-  
-  .start-button:hover {
-    background-color: #21a1f1;
-  }
-
-  @import url(https://fonts.googleapis.com/css?family=Press+Start+2P);
+@import url(https://fonts.googleapis.com/css?family=Press+Start+2P);
 
 * {
   margin: 0;
@@ -36,24 +6,25 @@
   box-sizing: border-box;
 }
 
-
-.container {
-  margin: auto;
-  top: 0; left: 0; bottom: 0; right: 0;
-  position:absolute;
-  height: 300px;
+.main-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-image: url('/src/assets/img/MainBackground.png'); /* 이미지 불러옴 */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: white;
+  text-align: center;
 }
 
 h1 {
-    align-items: center; /* 가운데 정렬 */
-  justify-content: center; /* 가운데 정렬 */
   font-family: 'Press Start 2P', cursive;
   color: #fff;
   font-size: 125px;
   transform: rotate(1deg) skew(-5deg);
-  -moz-transform: rotate(5deg) skew(-5deg);
-  -o-transform: rotate(5deg) skew(-5deg);
-  -ms-transform: rotate(5deg) skew(-5deg);
   text-shadow: 1px 1px 0 #51B3A3, 
     2px 2px 0 #51B3A3, 
     3px 4px 0 #51B3A3, 
@@ -121,4 +92,20 @@ h1 {
     86px 90px 0 #51B3A3,
     88px 91px 0 #51B3A3,
     90px 92px 0 #51B3A3;
+}
+
+.start-button {
+  margin-top: 100px; /* h1 아래에 200px 위치하도록 마진 추가 */
+  font-size: 1.5rem;
+  padding: 1rem 2rem;
+  color: #282c34;
+  background-color: #61dafb;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.start-button:hover {
+  background-color: #21a1f1;
 }

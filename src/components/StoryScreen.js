@@ -2,12 +2,13 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import './css/StoryScreen.css';
 import dialoguesData from '../assets/dialog.json'; // JSON 파일 경로
 
-const StoryScreen = ({ ScreenName, nickname }) => {
+const StoryScreen = ({ ScreenName, GoBackClick, nickname }) => {
   const [currentScene, setCurrentScene] = useState('trainstation_scene');
   const [currentDialogueIndex, setCurrentDialogueIndex] = useState(0);
   const [currentText, setCurrentText] = useState('');
   const [isAnimating, setIsAnimating] = useState(false);
   const [dialogues, setDialogues] = useState([]);
+  const [isFading, setIsFading] = useState(false);
   const currentInterval = useRef(null);
 
   useEffect(() => {
@@ -37,7 +38,11 @@ const StoryScreen = ({ ScreenName, nickname }) => {
     } else {
       const nextDialogue = dialogues[currentDialogueIndex]?.next;
       if (nextDialogue === null) {
-        ScreenName();
+        setIsFading(true);
+        setTimeout(() => {
+          ScreenName();
+          setIsFading(false);
+        }, 1000);
       } else if (typeof nextDialogue === 'string') {
         setCurrentScene(nextDialogue);
         setCurrentDialogueIndex(0);
@@ -71,7 +76,8 @@ const StoryScreen = ({ ScreenName, nickname }) => {
   const { name } = dialogues[currentDialogueIndex] || {};
 
   return (
-    <div className="story-screen">
+    <div className={`story-screen ${isFading ? 'fade-out' : 'fade-in'}`}>
+      <button className="back-button" onClick={GoBackClick}></button>
       <div className="dialogue-box" onClick={handleDialogueClick}>
         <div className="dialogue-text">
           <p>
@@ -80,7 +86,6 @@ const StoryScreen = ({ ScreenName, nickname }) => {
           <p>
             {currentText}
           </p>
-          
         </div>
       </div>
     </div>

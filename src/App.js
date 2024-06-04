@@ -47,6 +47,7 @@ function App() {
       {currentScreenName === "STORY" && (
         <StoryScreen 
           ScreenName={goGameScreen} 
+          GoBackClick={goNickNameScreen} // goNickNameScreen 함수를 전달하여 닉네임 화면으로 돌아가기
           nickname={nickname} // 닉네임 전달
         />
       )}

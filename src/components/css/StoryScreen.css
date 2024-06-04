@@ -1,9 +1,26 @@
-html, body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  overflow: hidden; /* 화면이 고정되게 설정 */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+html, body {
+  overflow: hidden;
+  height: 100%;
+}
+
 
 .story-screen {
   display: flex;
@@ -17,6 +34,15 @@ html, body {
   background-position: center;
   background-repeat: no-repeat;
   box-sizing: border-box;
+  animation-duration: 1s; /* 애니메이션 지속 시간 설정 */
+}
+
+.fade-in {
+  animation-name: fadeIn; /* fadeIn 애니메이션 적용 */
+}
+
+.fade-out {
+  animation-name: fadeOut; /* fadeOut 애니메이션 적용 */
 }
 
 .dialogue-box {
@@ -33,7 +59,7 @@ html, body {
   color: rgb(0, 0, 0);
   box-sizing: border-box;
   position: absolute;
-  bottom: -180px; /* 화면 아래에 고정 */
+  bottom: -140px; /* 화면 아래에 고정 */
   left: 50%;
   transform: translateX(-50%);
   cursor: pointer;
@@ -47,12 +73,24 @@ html, body {
   border-radius: 5px;
 }
 
-
 .dialogue-text {
   display: flex;
   flex-direction: column; /* 대사를 상하로 배치하기 위해 column으로 설정 */
   align-items: center; /* 가운데 정렬 */
   justify-content: center; /* 가운데 정렬 */
   font-size: 20px;
-  margin-top: 20px; /* 대사와 닉네임 사이의 간격을 조절 */
+  margin-top: 37px; /* 대사와 닉네임 사이의 간격을 조절 */
+}
+
+.back-button {
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+  width: 4.6rem;
+  height: 4.5rem;
+  background-image: url('/src/assets/button/back.png');
+  background-size: cover;
+  background-color: transparent;
+  border: none; 
+  cursor: pointer;
 }
