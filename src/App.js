@@ -7,8 +7,8 @@ import RankingScreen from './components/RankingScreen';
 import EndingStorydialog from './components/EndingStorydialog'; // 추가
 
 function App() {
-  // 현재 표시할 화면을 구분하기 위한 상태 값
   const [currentScreenName, setCurrentScreenName] = useState("MAIN");
+  const [nickname, setNickname] = useState(''); // 닉네임 상태 추가
 
   const goNickNameScreen = () => {
     setCurrentScreenName("NICKNAME");
@@ -17,7 +17,7 @@ function App() {
   const goStoryScreen = () => {
     setCurrentScreenName("STORY");
   };
-  
+
   const goGameScreen = () => {
     setCurrentScreenName("GAME");
   };
@@ -34,16 +34,30 @@ function App() {
     setCurrentScreenName("ENDING");
   };
 
-  // 버튼 누르면 화면이름 바꿔서 다음화면으로 넘어감
   return (
     <div className="App">
       {currentScreenName === "MAIN" && <MainScreen ScreenName={goNickNameScreen} />}
-      {currentScreenName === "NICKNAME" && <InputNicknameScreen ScreenName={goStoryScreen} GoBackClick={goMainScreen}/>}  {/* goBack이 뒤로 가기 */}
-      {currentScreenName === "STORY" && <StoryScreen ScreenName={goGameScreen} />}
-      {currentScreenName === "GAME" && <GameScreen ScreenName={goRankingScreen}/>}
-      {currentScreenName === "GAME" && <GameScreen ScreenName={goRankingScreen} GoBackClick={goStoryScreen}/>}
+      {currentScreenName === "NICKNAME" && (
+        <InputNicknameScreen 
+          ScreenName={goStoryScreen} 
+          GoBackClick={goMainScreen} 
+          setNickname={setNickname} // 닉네임 설정 함수 전달
+        />
+      )}
+      {currentScreenName === "STORY" && (
+        <StoryScreen 
+          ScreenName={goGameScreen} 
+          nickname={nickname} // 닉네임 전달
+        />
+      )}
+      {currentScreenName === "GAME" && (
+        <GameScreen 
+          ScreenName={goRankingScreen} 
+          GoBackClick={goStoryScreen}
+        />
+      )}
       {currentScreenName === "RANKING" && <RankingScreen ScreenName={goMainScreen}/>}
-      {currentScreenName === "ENDING" && <EndingStorydialog ScreenName={goEndingScreen}/>} {/* 수정된 부분 */}
+      {currentScreenName === "ENDING" && <EndingStorydialog ScreenName={goEndingScreen}/>}
     </div>
   );
 }
