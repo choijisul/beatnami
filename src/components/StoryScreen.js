@@ -10,13 +10,11 @@ const StoryScreen = ({ ScreenName, nickname }) => {
   const [dialogues, setDialogues] = useState([]);
   const currentInterval = useRef(null);
 
-  // 대사 데이터 설정
   useEffect(() => {
-    setDialogues(dialoguesData[currentScene]);
+    setDialogues(dialoguesData[currentScene] || []);
   }, [currentScene]);
 
-  // 애니메이션 시작
-  const startAnimation = useCallback((dialogue) => {
+  const startAnimation = (dialogue) => {
     setIsAnimating(true);
     setCurrentText('');
     let index = 0;
@@ -29,9 +27,8 @@ const StoryScreen = ({ ScreenName, nickname }) => {
       }
     }, 50);
     currentInterval.current = interval;
-  }, []);
+  };
 
-  // 대사 클릭 핸들러
   const handleDialogueClick = useCallback(() => {
     if (isAnimating) {
       clearInterval(currentInterval.current);
@@ -40,7 +37,7 @@ const StoryScreen = ({ ScreenName, nickname }) => {
     } else {
       const nextDialogue = dialogues[currentDialogueIndex]?.next;
       if (nextDialogue === null) {
-        ScreenName(); // 스크린 이름 변경 함수 호출
+        ScreenName();
       } else if (typeof nextDialogue === 'string') {
         setCurrentScene(nextDialogue);
         setCurrentDialogueIndex(0);
@@ -50,14 +47,12 @@ const StoryScreen = ({ ScreenName, nickname }) => {
     }
   }, [isAnimating, currentDialogueIndex, dialogues, ScreenName]);
 
-  // 대사 애니메이션 시작
   useEffect(() => {
     if (dialogues.length > 0) {
-      startAnimation(dialogues[currentDialogueIndex].dialogue || '');
+      startAnimation(dialogues[currentDialogueIndex]?.dialogue || '');
     }
-  }, [currentDialogueIndex, dialogues, startAnimation]);
+  }, [currentDialogueIndex, dialogues]);
 
-  // 키 다운 이벤트 핸들러 등록
   useEffect(() => {
     const handleKeyDown = (event) => {
       if (event.key === 'Enter' || event.key === ' ') {
@@ -66,26 +61,26 @@ const StoryScreen = ({ ScreenName, nickname }) => {
     };
 
     window.addEventListener('keydown', handleKeyDown);
-
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
   }, [handleDialogueClick]);
 
-  // 대사가 없을 경우 렌더링하지 않음
   if (dialogues.length === 0) return null;
 
   const { name } = dialogues[currentDialogueIndex] || {};
 
   return (
     <div className="story-screen">
-      {/* Ending 스토리로 넘어가는 임시 버튼 */}
-      <button onClick={() => ScreenName()} style={{ position: 'absolute', top: '20px', left: '20px' }}>Ending 스토리로 이동</button>
       <div className="dialogue-box" onClick={handleDialogueClick}>
         <div className="dialogue-text">
           <p>
-            <strong id="nickname">{name === 'nickname' ? nickname : name} </strong> {currentText}
+            <strong id='nickname'>{name === 'nickname' ? nickname : name} </strong> 
           </p>
+          <p>
+            {currentText}
+          </p>
+          
         </div>
       </div>
     </div>

@@ -3,9 +3,9 @@ import gameImg1 from '../assets/img/field-flower1.png';
 import gameImg2 from '../assets/img/field-flower2.png';
 import iconVolum from '../assets/img/icon-volum.png';
 import gameMusic from '../assets/background-music/round1.mp3';
-
 import pondimg from '../assets/img/pond.png';
-import pong from '../assets/img/hammer.png'; // "hammer"를 "pong"으로 수정
+import pong from '../assets/img/hammer.png';
+
 import pongDrive from '../assets/img/pond-drive.png'; // Import pond-drive image
 import './css/GameScreen.css';
 
@@ -20,12 +20,10 @@ const GameScreen = ({ ScreenName, GoBackClick }) => {
   const maxImages = 4; // 한 번에 생성할 최대 이미지 개수
   const stop_t = 6000; // 이미지 생성 멈춤 시간
 
-
   const canvasRef = useRef(null);
   const audioRef = useRef(null);
   const [showVolumeSlide, setShowVolumeSlide] = useState(false); // 슬라이드 바 표시 상태
   const [volume, setVolume] = useState(6); // 초기 볼륨 값 (1~12 중간값)
-
 
   // 이벤트 핸들러: 스페이스 바 누를 때 호출되는 함수
   const handleKeyDown = (event) => {
@@ -40,11 +38,13 @@ const GameScreen = ({ ScreenName, GoBackClick }) => {
 
   // 함수: hammer와 이미지 사이의 충돌을 검사
   const checkCollisions = () => {
+
     // console.log("이미지와 충돌 검사")
     const hammer = document.getElementById('pong').getBoundingClientRect();
     images.forEach(image => {
       const imgElement = document.getElementById(`image-${image.id}`);
       if (imgElement) {
+
         console.log("이미지와 충돌 검사") 
         const imgRect = imgElement.getBoundingClientRect();
         if (
@@ -118,6 +118,7 @@ const GameScreen = ({ ScreenName, GoBackClick }) => {
 
   // 이벤트 핸들러: 이미지 클릭 시 호출되는 함수
   const handleImageClick = (id) => {
+
     console.log("핸들러 옴")
     setImages((prevImages) =>
       prevImages.map(image => {
@@ -134,8 +135,6 @@ const GameScreen = ({ ScreenName, GoBackClick }) => {
     );
   };
 
-
-  // 화면 슬라이드
   useEffect(() => {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
@@ -152,32 +151,35 @@ const GameScreen = ({ ScreenName, GoBackClick }) => {
     const img2 = new Image();
 
     img1.src = gameImg1;
-    img1.onload = function () {
-      img2.src = gameImg2;
-      img2.onload = function () {
-        todoDrawing();
-      }
-    }
+    img2.src = gameImg2;
 
     // 슬라이드 되는 화면 이미지가 그려지도록
-    function todoDrawing() {
-      let inter = setInterval(() => {
-        ctx.clearRect(0, 0, width, height);
+    const todoDrawing = () => {
+      ctx.clearRect(0, 0, width, height);
 
-        // 이미지가 왼쪽으로 이동하면서 화면을 채우도록 설정
-        ctx.drawImage(img1, move_x1, 0, width, height);
-        ctx.drawImage(img2, move_x2, 0, width, height);
+      // 이미지가 왼쪽으로 이동하면서 화면을 채우도록 설정
+      ctx.drawImage(img1, move_x1, 0, width, height);
+      ctx.drawImage(img2, move_x2, 0, width, height);
 
-        move_x1 -= 1;
-        move_x2 -= 1;
+      move_x1 -= 1;
+      move_x2 -= 1;
 
-        // 이미지가 계속해서 반복하여 슬라이드 될 수 있도록
-        if (move_x1 <= -width) move_x1 = width;
-        if (move_x2 <= 0) move_x2 = width;
+      // 이미지가 계속해서 반복하여 슬라이드 될 수 있도록
+      if (move_x1 <= -width) move_x1 = width;
+      if (move_x2 <= -width) move_x2 = width;
 
-      },);
-      return () => clearInterval(inter);
-    }
+      requestAnimationFrame(todoDrawing); // requestAnimationFrame을 사용하여 반복 호출
+    };
+
+    // 두 이미지가 모두 로드되었을 때 애니메이션 시작
+    img1.onload = () => {
+      if (img2.complete) {
+        todoDrawing();
+      } else {
+        img2.onload = todoDrawing;
+      }
+    };
+
   }, []);
 
   // 볼륨을 1~12 범위에서 0~1 범위로 조정
@@ -238,53 +240,43 @@ const GameScreen = ({ ScreenName, GoBackClick }) => {
 
       {/* 다음 페이지 이동 */}
       <button className='next-button' onClick={ScreenName} />
-
-      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-      <div
-        className="image-container"
-        style={{
-          width: '100%', // 컨테이너 너비를 최대 너비로 설정
-          height: '100%',
-          border: "1px solid black",
-          position: "relative",
-          overflow: "hidden",
-        }}
-      >
-        {images.map((image) => (
+        
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        {/* 이미지와 해머 표시 */}
+        <div className="image-container" style={{ width: "100%", height: "600px", border: "1px solid black", position: "relative", overflow: "hidden" }}>
+          {images.map((image) => (
+            <img
+              key={image.id}
+              id={`image-${image.id}`} // Add ID for collision detection
+              src={image.src} // Use dynamic src based on state
+              alt="Moving"
+              onClick={() => handleImageClick(image.id)} // Add click event handler
+              style={{
+                position: "absolute",
+                left: `${image.left}px`, // left 값을 픽셀 단위로 설정
+                top: '50%', // 중앙에 위치하도록 top 값 설정
+                transform: 'translateY(-50%)', // 정확한 중앙 정렬을 위해 translateY 추가
+                transition: "left 0.25s linear", // 0.25초 동안 이동 (속도 2배 빠르게)
+              }}
+            />
+          ))}
           <img
-            key={image.id}
-            id={`image-${image.id}`} // Add ID for collision detection
-            src={image.src} // Use dynamic src based on state
-            alt="Moving"
-            onClick={() => handleImageClick(image.id)} // Add click event handler
+            id="pong" // "hammer"를 "pong"으로 수정
+            src={pong} // "hammer"를 "pong"으로 수정
             style={{
               position: "absolute",
-              left: `${image.left}px`, // left 값을 픽셀 단위로 설정
-              top: '50%', // 중앙에 위치하도록 top 값 설정
-              transform: 'translateY(-50%)', // 정확한 중앙 정렬을 위해 translateY 추가
-              transition: "left 0.25s linear", // 0.25초 동안 이동 (속도 2배 빠르게)
+              left: hammerPosition.left, // Apply dynamic left position
+              top: hammerPosition.top, // Apply dynamic top position
+              transform: rotateHammer ? 'rotate(-90deg)' : 'none', // Apply rotation if rotateHammer is true
+              transition: "transform 0.1s", // Add transition for smooth rotation
             }}
           />
-        ))}
-        <img
-          id="pong" // "hammer"를 "pong"으로 수정
-          src={pong} // "hammer"를 "pong"으로 수정
-          style={{
-            position: "absolute",
-            left: hammerPosition.left, // Apply dynamic left position
-            top: hammerPosition.top, // Apply dynamic top position
-            transform: rotateHammer ? 'rotate(-90deg)' : 'none', // Apply rotation if rotateHammer is true
-            transition: "transform 0.1s", // Add transition for smooth rotation
-          }}
-        />
+        </div>
       </div>
-    </div>
-
-
       {/* 배경을 그림 */}
       <canvas ref={canvasRef} />
     </div>
-  )
+  );
 }
 
 export default GameScreen;
