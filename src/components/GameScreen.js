@@ -5,10 +5,12 @@ import iconVolum from '../assets/img/icon-volum.png';
 import gameMusic from '../assets/background-music/round1.mp3';
 import pondimg from '../assets/img/pond.png';
 import pong from '../assets/img/hammer.png';
+
 import pongDrive from '../assets/img/pond-drive.png'; // Import pond-drive image
 import './css/GameScreen.css';
 
 const GameScreen = ({ ScreenName, GoBackClick }) => {
+
   const [images, setImages] = useState([]);
   const [moveImages, setMoveImages] = useState(true);
   const [creatingAllowed, setCreatingAllowed] = useState(true);
@@ -36,10 +38,14 @@ const GameScreen = ({ ScreenName, GoBackClick }) => {
 
   // 함수: hammer와 이미지 사이의 충돌을 검사
   const checkCollisions = () => {
+
+    // console.log("이미지와 충돌 검사")
     const hammer = document.getElementById('pong').getBoundingClientRect();
     images.forEach(image => {
       const imgElement = document.getElementById(`image-${image.id}`);
       if (imgElement) {
+
+        console.log("이미지와 충돌 검사") 
         const imgRect = imgElement.getBoundingClientRect();
         if (
           hammer.left < imgRect.right &&
@@ -112,6 +118,8 @@ const GameScreen = ({ ScreenName, GoBackClick }) => {
 
   // 이벤트 핸들러: 이미지 클릭 시 호출되는 함수
   const handleImageClick = (id) => {
+
+    console.log("핸들러 옴")
     setImages((prevImages) =>
       prevImages.map(image => {
         if (image.id === id) {
@@ -127,7 +135,6 @@ const GameScreen = ({ ScreenName, GoBackClick }) => {
     );
   };
 
-  // 배경을 슬라이드시키는 useEffect
   useEffect(() => {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
@@ -233,7 +240,7 @@ const GameScreen = ({ ScreenName, GoBackClick }) => {
 
       {/* 다음 페이지 이동 */}
       <button className='next-button' onClick={ScreenName} />
-
+        
       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
         {/* 이미지와 해머 표시 */}
         <div className="image-container" style={{ width: "100%", height: "600px", border: "1px solid black", position: "relative", overflow: "hidden" }}>
@@ -266,7 +273,6 @@ const GameScreen = ({ ScreenName, GoBackClick }) => {
           />
         </div>
       </div>
-
       {/* 배경을 그림 */}
       <canvas ref={canvasRef} />
     </div>
